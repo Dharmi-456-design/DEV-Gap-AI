@@ -10,27 +10,21 @@ import {
 } from 'react-icons/ri';
 import ScoreRing from '../components/ScoreRing.jsx';
 
-
-
 // ── DAILY CHALLENGES (rotates by day of week) ────────────────────────────────
 const DAILY_CHALLENGES = [
-  { day: 0, emoji: '🌅', title: 'Sunday Reset', tasks: ['Plan your week — write 3 learning goals', 'Review your GitHub and close old branches', 'Read one technical article or blog post'] },
-  { day: 1, emoji: '💡', title: 'Monday Momentum', tasks: ['Build one new small feature today', 'Push at least 2 commits to GitHub', 'Watch one tutorial on your weakest skill'] },
-  { day: 2, emoji: '⚡', title: 'Tuesday Deep Work', tasks: ['Spend 2+ hrs on your hardest project', 'Solve one LeetCode or HackerRank problem', 'Document something you built this week'] },
-  { day: 3, emoji: '🎯', title: 'Wednesday Focus', tasks: ['No new courses — only build today', 'Review your roadmap and update progress', 'Write a README for one of your projects'] },
-  { day: 4, emoji: '🔥', title: 'Thursday Streak', tasks: ['Commit to GitHub before 10 PM', 'Add tests or improve one existing project', 'Share your progress publicly (tweet/post)'] },
-  { day: 5, emoji: '🚀', title: 'Friday Apply Day', tasks: ['Apply to 2-3 job openings', 'Update your resume with latest work', 'Research 1 target company thoroughly'] },
-  { day: 6, emoji: '🧠', title: 'Saturday Skill Day', tasks: ['Deep-dive one concept you\'ve been avoiding', 'Build something from scratch, no tutorial', 'Review and refactor old code you wrote'] },
+  { day: 0, emoji: '🌅', title: 'Sunday Reset', tasks: ['Plan your week — write 3 goals', 'Review your GitHub', 'Read one tech blog'] },
+  { day: 1, emoji: '💡', title: 'Monday Momentum', tasks: ['Build ONE small feature', 'Push 2 commits', 'Watch one tutorial'] },
+  { day: 2, emoji: '⚡', title: 'Tuesday Deep Work', tasks: ['2+ hrs on hardest project', 'Solve one LeetCode', 'Document your progress'] },
+  { day: 3, emoji: '🎯', title: 'Wednesday Focus', tasks: ['No new courses — BUILD', 'Update your roadmap', 'Write a README'] },
+  { day: 4, emoji: '🔥', title: 'Thursday Streak', tasks: ['Commit before 10 PM', 'Improve existing project', 'Share progress publicly'] },
+  { day: 5, emoji: '🚀', title: 'Friday Apply Day', tasks: ['Apply to 3 job openings', 'Update your resume', 'Research 1 target company'] },
+  { day: 6, emoji: '🧠', title: 'Saturday Skill Day', tasks: ['Deep-dive one logic concept', 'Build scratch projects', 'Refactor old code'] },
 ];
 
 const QUOTES = [
-  { text: "The only way to learn a new programming language is by writing programs in it.", author: "Dennis Ritchie" },
+  { text: "The only way to learn a new language is by writing programs in it.", author: "Dennis Ritchie" },
   { text: "First, solve the problem. Then, write the code.", author: "John Johnson" },
-  { text: "Code is like humor. When you have to explain it, it's bad.", author: "Cory House" },
   { text: "The best error message is the one that never shows up.", author: "Thomas Fuchs" },
-  { text: "Programming isn't about what you know; it's about what you can figure out.", author: "Chris Pine" },
-  { text: "Every great developer you know got there by solving problems they were unqualified to solve.", author: "Patrick McKenzie" },
-  { text: "It's not a bug, it's an undocumented feature. Fix it anyway.", author: "DevGap AI" },
 ];
 
 function TodaysFocus() {
@@ -57,66 +51,57 @@ function TodaysFocus() {
   const allDone = doneCount === challenge.tasks.length;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
       {/* Daily Challenge */}
-      <div className="md:col-span-2 neon-glass-card p-5 border border-primary-500/10">
-        <div className="flex items-center justify-between mb-4">
-          <div className="flex items-center gap-3">
-            <span className="text-2xl">{challenge.emoji}</span>
+      <div className="lg:col-span-2 neon-glass-card p-4 md:p-6 border border-primary-500/10">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-2xl bg-slate-800 flex items-center justify-center text-2xl shadow-inner border border-white/5">
+              {challenge.emoji}
+            </div>
             <div>
-              <p className="text-xs text-primary-400 font-bold uppercase tracking-wider">Today's Challenge</p>
-              <h3 className="text-white font-bold text-base">{challenge.title}</h3>
+              <p className="text-[10px] text-primary-400 font-black uppercase tracking-widest mb-1 opacity-70">Focus Activity</p>
+              <h3 className="text-white font-black text-lg md:text-xl tracking-tight">{challenge.title}</h3>
             </div>
           </div>
-          <div className="text-right">
-            <p className="text-2xl font-black text-primary-400">{doneCount}/{challenge.tasks.length}</p>
-            <p className="text-xs text-slate-400">completed</p>
+          <div className="flex h-fit bg-slate-900/50 px-4 py-2 rounded-xl border border-white/5 items-center gap-3 self-end sm:self-center">
+            <span className="text-2xl font-black text-primary-400">{doneCount}/{challenge.tasks.length}</span>
+            <span className="text-[10px] text-slate-500 font-bold uppercase tracking-tighter">Tasks Done</span>
           </div>
         </div>
-        <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden mb-4">
-          <div
-            style={{ width: `${(doneCount / challenge.tasks.length) * 100}%`, transition: 'width 0.6s ease-out' }}
-            className="h-full bg-gradient-to-r from-primary-600 to-secondary-500 rounded-full"
-          />
-        </div>
-        <div className="space-y-2">
+        <div className="space-y-3">
           {challenge.tasks.map((task, i) => (
             <button key={i} onClick={() => toggle(i)}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-200 ${
-                checked[i] ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-slate-700/40 border-white/5 hover:border-primary-500/20'
+              className={`w-full flex items-center gap-4 p-4 rounded-2xl border text-left transition-all duration-300 transform active:scale-[0.98] ${
+                checked[i] ? 'bg-emerald-500/5 border-emerald-500/20 shadow-inner' : 'bg-slate-800/40 border-white/5 hover:border-primary-500/20'
               }`}>
-              <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all ${
-                checked[i] ? 'bg-emerald-500 border-emerald-500' : 'border-slate-600'
+              <div className={`w-6 h-6 rounded-lg border-2 flex-shrink-0 flex items-center justify-center transition-all ${
+                checked[i] ? 'bg-emerald-500 border-emerald-500 scale-110' : 'border-slate-700'
               }`}>
-                {checked[i] && <RiCheckboxCircleLine className="text-white text-xs" />}
+                {checked[i] && <RiCheckboxCircleLine className="text-white text-sm" />}
               </div>
-              <span className={`text-sm ${checked[i] ? 'text-slate-500 line-through' : 'text-slate-200'}`}>{task}</span>
+              <span className={`text-sm md:text-base font-medium ${checked[i] ? 'text-slate-500 line-through' : 'text-slate-200'}`}>{task}</span>
             </button>
           ))}
         </div>
-        {allDone && (
-          <div className="mt-4 p-3 bg-emerald-500/10 border border-emerald-500/20 rounded-xl flex items-center gap-2 animate-fade-in">
-            <RiTrophyLine className="text-yellow-400 text-xl flex-shrink-0" />
-            <p className="text-emerald-400 font-bold text-sm">All done! You're ahead of 90% of people. Keep shipping. 🔥</p>
-          </div>
-        )}
       </div>
 
-      {/* Quote of the Day */}
-      <div className="neon-glass-card p-5 bg-gradient-to-br from-purple-900/20 to-obsidian-800 border border-purple-500/10 flex flex-col justify-between">
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <RiFlashlightLine className="text-purple-400 text-base" />
-            <p className="text-xs text-purple-400 font-bold uppercase tracking-wider">Dev Quote</p>
+      {/* Quote Module */}
+      <div className="neon-glass-card p-6 bg-gradient-to-br from-purple-900/20 to-obsidian-800 border border-purple-500/10 flex flex-col justify-between group overflow-hidden relative">
+        <RiFlashlightLine className="absolute -top-4 -right-4 text-purple-500/5 text-9xl rotate-12" />
+        <div className="relative z-10">
+          <div className="flex items-center gap-2 mb-6">
+            <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_8px_rgba(168,85,247,0.5)]" />
+            <p className="text-[10px] text-purple-400 font-bold uppercase tracking-widest">Growth Dose</p>
           </div>
-          <p className="text-slate-200 text-sm leading-relaxed italic mb-4">
+          <p className="text-slate-100 text-base md:text-lg leading-relaxed font-medium italic mb-6">
             "{quote.text}"
           </p>
-          <p className="text-slate-400 text-xs">— {quote.author}</p>
+          <p className="text-slate-500 text-xs font-bold tracking-tight">— {quote.author}</p>
         </div>
         <Link to="/mentor-mode"
-          className="mt-4 w-full py-2.5 text-sm font-bold text-center bg-purple-600/20 text-purple-300 border border-purple-500/20 rounded-xl hover:bg-purple-600/30 hover:border-purple-500/30 transition-all">
-          Talk to Mentor →
+          className="relative z-10 mt-8 w-full py-4 text-xs font-black uppercase tracking-widest text-center bg-purple-600/20 text-purple-300 border border-purple-500/20 rounded-2xl hover:bg-purple-600/30 hover:border-purple-500/40 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-xl shadow-purple-950/20">
+          Sync with Mentor →
         </Link>
       </div>
     </div>
@@ -138,322 +123,134 @@ export default function DashboardPage() {
       axios.get('/api/resume').catch(() => ({ data: null })),
       axios.get('/api/career/decision').catch(() => ({ data: null })),
     ]).then(([p, g, r, d]) => {
-      setProfile(p.data);
-      setGithub(g.data);
-      setResume(r.data);
-      setDecision(d.data);
+      setProfile(p.data); setGithub(g.data); setResume(r.data); setDecision(d.data);
     }).finally(() => setLoading(false));
   }, []);
 
   const hour = new Date().getHours();
   const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
   const devGapScore = profile?.devGapScore || 0;
-  const completionSteps = [
-    { done: !!resume, label: 'Resume Uploaded', icon: RiFileTextLine, path: '/resume' },
-    { done: !!github, label: 'GitHub Analyzed', icon: RiGithubLine, path: '/github' },
-    { done: !!decision, label: 'Career Decided', icon: RiBrainLine, path: '/career-intent' },
-  ];
-  const completionPct = Math.round((completionSteps.filter(s => s.done).length / completionSteps.length) * 100);
-
+  
   if (loading) return (
-    <div className="p-8 flex items-center justify-center min-h-screen">
-      <div className="text-center">
-        <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-slate-500">Loading your dashboard...</p>
+    <div className="p-8 flex items-center justify-center min-h-[80vh]">
+      <div className="flex flex-col items-center gap-6">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 border-4 border-primary-500/20 rounded-full" />
+          <div className="absolute inset-0 border-4 border-primary-400 border-t-transparent rounded-full animate-spin" />
+        </div>
+        <p className="text-slate-500 font-bold uppercase tracking-widest text-xs animate-pulse">Initializing Dashboard</p>
       </div>
     </div>
   );
 
   return (
-    <div className="p-6 space-y-6 animate-fade-in">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-black text-white">
-            {greeting}, <span className="glow-text text-white/90">{user?.name?.split(' ')[0]}</span> 👋
+    <div className="p-4 md:p-6 lg:p-10 space-y-8 animate-fade-in max-w-[1600px] mx-auto">
+      {/* Header Layout */}
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div className="space-y-1">
+          <h1 className="text-3xl md:text-5xl font-black text-white leading-tight uppercase tracking-tighter">
+            Good evening, <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-500">{user?.name?.split(' ')[0]}</span>.
           </h1>
-          <p className="text-slate-500 text-sm mt-1">Here's your career intelligence overview</p>
+          <p className="text-slate-500 text-sm md:text-base font-black uppercase tracking-widest opacity-80">welcome to career intelligence portal</p>
         </div>
-        <div className="flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-emerald-400 live-pulse" />
-          <span className="text-xs text-slate-500">Live</span>
+        <div className="hidden sm:flex items-center gap-4 bg-slate-900/50 p-3 rounded-2xl border border-white/5">
+           <div className="w-3 h-3 rounded-full bg-emerald-400 live-pulse shadow-[0_0_10px_rgba(52,211,153,0.4)]" />
+           <span className="text-[10px] text-slate-300 font-black uppercase tracking-widest">Real-Time Core Engine: Active</span>
         </div>
       </div>
 
-      {/* ── TODAY'S FOCUS ── */}
       <TodaysFocus />
 
-      {/* ── MENTOR MODE HIGHLIGHT BANNER ── */}
-      <Link
-        to="/mentor-mode"
-        className="block p-5 rounded-2xl bg-gradient-to-r from-purple-900/60 to-blue-900/50 border border-purple-500/30 hover:border-purple-500/60 transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/15 group"
-      >
-        <div className="flex items-center gap-4">
-          <div className="w-14 h-14 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/30">
-            <RiPsychotherapyLine className="text-white text-2xl" />
-          </div>
-          <div className="flex-1">
-            <div className="flex items-center gap-2 mb-1">
-              <p className="text-white font-black text-lg">Mentor Mode — Human Decision Engine</p>
-              <span className="text-xs font-bold px-2 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-md">NEW</span>
-            </div>
-            <p className="text-slate-500 text-sm leading-relaxed">
-              A strict career mentor who challenges your decisions, detects contradictions, and gives you a brutally honest <strong className="text-purple-300">Human Readiness Score</strong>. Not AI advice — human-like thinking.
-            </p>
-          </div>
-          <RiArrowRightLine className="text-purple-400 text-xl flex-shrink-0 group-hover:translate-x-1 transition-transform" />
+      {/* ── MENTOR MODE BANNER - RESPONSIVE STACK ── */}
+      <Link to="/mentor-mode" className="block p-1 rounded-3xl bg-gradient-to-r from-purple-500/20 via-blue-500/10 to-transparent border border-white/5 hover:border-purple-500/40 transition-all duration-500 group relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-transparent translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-1000" />
+        <div className="relative p-6 md:p-8 rounded-[1.4rem] bg-slate-950/40 backdrop-blur-xl flex flex-col md:flex-row items-center gap-8">
+           <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-[2rem] flex items-center justify-center shadow-2xl shadow-purple-500/40 relative">
+              <RiPsychotherapyLine className="text-white text-4xl" />
+              <div className="absolute -bottom-2 -right-2 bg-slate-900 border border-white/10 p-2 rounded-xl shadow-lg animate-bounce">
+                <RiSparklingLine className="text-purple-400 text-sm" />
+              </div>
+           </div>
+           <div className="flex-1 text-center md:text-left space-y-2">
+              <h3 className="text-xl md:text-2xl font-black text-white uppercase tracking-tighter">Human Decision Engine <span className="text-purple-500 text-lg">01</span></h3>
+              <p className="text-slate-400 text-sm md:text-base max-w-2xl font-medium leading-relaxed">
+                Connect with Aman for a <span className="text-purple-300 font-bold underline decoration-purple-500/30">Brutally Honest</span> career reality check. We don't just give roadmaps—we simulate your market value and failure risks.
+              </p>
+           </div>
+           <div className="w-full md:w-fit bg-white text-slate-950 font-black text-[10px] uppercase tracking-widest px-8 py-4 rounded-2xl flex items-center justify-center gap-3 group-hover:bg-purple-400 transition-colors">
+              Engage Protocol <RiArrowRightLine className="group-hover:translate-x-2 transition-transform" />
+           </div>
         </div>
       </Link>
 
-      {/* ROW 1: Profile / Score / Decision */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {/* Responsive Core Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {/* Profile Card */}
-        <div className="neon-glass-card-hover p-6 flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-2xl flex items-center justify-center text-slate-900 text-2xl font-black shadow-lg shadow-primary-500/30">
-              {user?.name?.[0]?.toUpperCase()}
-            </div>
-            <div>
-              <h3 className="font-bold text-white text-lg">{user?.name}</h3>
-              <p className="text-slate-500 text-sm">{profile?.targetRole || 'Set your target role'}</p>
-              <p className="text-xs text-slate-400">{user?.email}</p>
-            </div>
-          </div>
-          <div className="space-y-2">
-            {completionSteps.map(({ done, label, icon: Icon, path }) => (
-              <Link key={label} to={path} className="flex items-center gap-2 text-sm group">
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${done ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-900/40/5 text-slate-400'}`}>
-                  <Icon size={11} />
-                </div>
-                <span className={`flex-1 ${done ? 'text-emerald-400' : 'text-slate-400'}`}>{label}</span>
-                {!done && <RiArrowRightLine size={12} className="text-slate-600 group-hover:text-primary-400 transition-colors" />}
-              </Link>
-            ))}
-          </div>
-          <div className="mt-auto">
-            <div className="flex justify-between text-xs text-slate-500 mb-1">
-              <span>Profile Completion</span>
-              <span className="text-primary-400 font-bold">{completionPct}%</span>
-            </div>
-            <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden">
-              <div style={{ width: `${completionPct}%` }} className="h-full bg-gradient-to-r from-primary-600 to-secondary-500 rounded-full transition-all duration-1000" />
-            </div>
-          </div>
-        </div>
-
-        {/* DevGap Score */}
-        <div className="neon-glass-card-hover p-6 flex flex-col items-center justify-center gap-4 text-center glow-primary">
-          <p className="label-primary">DevGap Score</p>
-          <ScoreRing score={devGapScore} size={120} />
-          <div>
-            <p className="text-white font-bold">
-              {devGapScore >= 80 ? '🚀 Excellent' : devGapScore >= 60 ? '⚡ Good Progress' : devGapScore >= 40 ? '📈 Developing' : '🌱 Getting Started'}
-            </p>
-            <p className="text-slate-500 text-xs mt-1">
-              {decision ? `Targeting: ${decision.bestPath}` : 'Run Career Analysis to get your score'}
-            </p>
-          </div>
-          {!decision && (
-            <Link to="/career-intent" className="btn-primary text-sm px-4 py-2">Start Analysis</Link>
-          )}
-        </div>
-
-        {/* Life Decision */}
-        <div className="neon-glass-card-hover p-6 flex flex-col gap-4">
-          <div className="flex items-center gap-2 mb-1">
-            <RiLightbulbLine className="text-primary-400 text-xl" />
-            <h3 className="section-title text-base">Life Decision</h3>
-          </div>
-          {decision ? (
-            <>
-              <div className="p-3 bg-primary-500/10 border border-primary-500/20 rounded-xl">
-                <p className="text-xs text-primary-400 font-semibold mb-1">BEST CAREER PATH</p>
-                <p className="text-white font-bold text-lg">{decision.bestPath}</p>
+        <div className="neon-glass-card-hover p-6 flex flex-col gap-6">
+           <div className="flex items-center gap-5">
+              <div className="w-16 h-16 bg-gradient-to-tr from-primary-600 to-secondary-500 rounded-2xl flex items-center justify-center text-slate-950 text-2xl font-black shadow-lg shadow-primary-500/40 ring-4 ring-white/5">
+                {user?.name?.[0]?.toUpperCase()}
               </div>
-              <div className="flex items-center gap-3">
-                <div className={`${decision.failureRisk === 'low' ? 'badge-risk-low' : decision.failureRisk === 'medium' ? 'badge-risk-medium' : 'badge-risk-high'}`}>
-                  <RiShieldCheckLine size={10} />
-                  {decision.failureRisk?.toUpperCase()} RISK
-                </div>
-                <span className="text-slate-500 text-xs">{decision.timeRequired}</span>
+              <div className="min-w-0">
+                <h3 className="font-black text-white text-xl truncate">{user?.name}</h3>
+                <p className="text-primary-400 text-xs font-bold uppercase tracking-widest truncate">{profile?.targetRole || 'Intelligence Analyst'}</p>
               </div>
-              <div className="flex items-center gap-2 text-sm text-slate-300">
-                <RiTimeLine className="text-primary-400" />
-                <span>Job Eligible: <span className={decision.jobEligible ? 'text-emerald-400 font-bold' : 'text-red-400 font-bold'}>{decision.jobEligible ? 'YES ✓' : 'NOT YET'}</span></span>
-              </div>
-              <Link to="/career-decision" className="text-primary-400 text-sm font-medium hover:text-primary-300 flex items-center gap-1 mt-auto">
-                View Full Report <RiArrowRightLine />
-              </Link>
-            </>
-          ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-center gap-3 py-4">
-              <RiBrainLine className="text-4xl text-slate-600" />
-              <p className="text-slate-500 text-sm">Complete Intent Engine + GitHub Analysis to unlock your career decision</p>
-              <Link to="/career-intent" className="btn-primary text-sm px-4 py-2">Start Now</Link>
-            </div>
-          )}
-        </div>
-      </div>
-
-      {/* ROW 2: Skills / Portfolio / Risk */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {/* Skills */}
-        <div className="neon-glass-card-hover p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="section-title">Detected Skills</h3>
-            <Link to="/resume" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Upload Resume <RiArrowRightLine /></Link>
-          </div>
-          {resume?.extractedSkills?.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {resume.extractedSkills.map(skill => (
-                <span key={skill} className="px-2 py-1 bg-slate-700 border border-white/5 rounded-lg text-xs text-slate-300 capitalize">
-                  {skill}
-                </span>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-6">
-              <RiFileTextLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-400 text-sm">Upload your resume to extract skills</p>
-              <Link to="/resume" className="text-primary-400 text-xs mt-2 inline-block hover:text-primary-300">Upload PDF →</Link>
-            </div>
-          )}
-        </div>
-
-        {/* Portfolio Score */}
-        <div className="neon-glass-card-hover p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="section-title">Portfolio Score</h3>
-            <Link to="/github" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Analyze <RiArrowRightLine /></Link>
-          </div>
-          {github ? (
-            <div className="space-y-4">
-              <div className="flex items-center gap-4">
-                <img src={github.avatarUrl} alt="avatar" className="w-12 h-12 rounded-full border-2 border-primary-500/30" />
-                <div>
-                  <p className="text-white font-bold">@{github.username}</p>
-                  <p className="text-slate-500 text-xs">{github.publicRepos} repos · {github.followers} followers</p>
-                </div>
-              </div>
+           </div>
+           <div className="grid grid-cols-2 gap-3">
               {[
-                { label: 'Portfolio Score', value: github.portfolioScore, color: 'from-primary-600 to-secondary-500' },
-                { label: 'Activity Score', value: github.activityScore, color: 'from-blue-500 to-cyan-500' },
-              ].map(({ label, value, color }) => (
-                <div key={label}>
-                  <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-500">{label}</span>
-                    <span className="text-white font-bold">{value}/100</span>
-                  </div>
-                  <div className="h-2 bg-slate-600 rounded-full overflow-hidden">
-                    <div style={{ width: `${value}%` }} className={`h-full bg-gradient-to-r ${color} rounded-full`} />
-                  </div>
-                </div>
+                { done: !!resume, label: 'Resume', path: '/resume' },
+                { done: !!github, label: 'GitHub', path: '/github' },
+                { done: !!decision, label: 'Intent', path: '/career-intent' }
+              ].map(s => (
+                <Link key={s.label} to={s.path} className={`p-3 rounded-xl border text-[10px] font-black uppercase text-center tracking-widest transition-all ${s.done ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-slate-800/50 border-white/5 text-slate-500 hover:text-white hover:border-white/20'}`}>
+                   {s.label}
+                </Link>
               ))}
-              <div className="grid grid-cols-3 gap-2 text-center">
-                {[
-                  { label: '⭐ Stars', value: github.totalStars },
-                  { label: '📦 Repos', value: github.publicRepos },
-                  { label: '👥 Followers', value: github.followers },
-                ].map(({ label, value }) => (
-                  <div key={label} className="bg-slate-700 rounded-xl p-2">
-                    <p className="text-white font-bold text-sm">{value}</p>
-                    <p className="text-slate-400 text-xs">{label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-6">
-              <RiGithubLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-400 text-sm">Analyze your GitHub profile</p>
-              <Link to="/github" className="text-primary-400 text-xs mt-2 inline-block hover:text-primary-300">Connect GitHub →</Link>
-            </div>
-          )}
+           </div>
         </div>
 
-        {/* Risk Meter */}
-        <div className="neon-glass-card-hover p-6">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="section-title">Risk Analysis</h3>
-            <Link to="/career-decision" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Details <RiArrowRightLine /></Link>
+        {/* Score Ring Module */}
+        <div className="neon-glass-card-hover p-8 flex flex-col items-center justify-center gap-6 text-center group">
+          <div className="relative">
+             <div className="absolute inset-0 bg-primary-500/20 blur-[40px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+             <ScoreRing score={devGapScore} size={140} />
           </div>
-          {decision ? (
-            <div className="space-y-4">
-              <div className={`p-4 rounded-xl text-center neon-glass-card border ${decision.failureRisk === 'low' ? 'bg-emerald-500/10' : decision.failureRisk === 'medium' ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
-                <p className="text-4xl mb-2">{decision.failureRisk === 'low' ? '🟢' : decision.failureRisk === 'medium' ? '🟡' : '🔴'}</p>
-                <p className={`font-black text-2xl ${decision.failureRisk === 'low' ? 'text-emerald-400' : decision.failureRisk === 'medium' ? 'text-amber-400' : 'text-red-400'}`}>
-                  {decision.failureRisk?.toUpperCase()} RISK
-                </p>
-                <p className="text-slate-500 text-xs mt-1">{decision.confidencePercent}% confidence score</p>
-              </div>
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Failure Factors</p>
-                {decision.failureReasons?.slice(0, 2).map((r, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-slate-500">
-                    <span className="text-red-400 mt-0.5">⚠</span>
-                    <span>{r}</span>
-                  </div>
-                ))}
-                {!decision.failureReasons?.length && (
-                  <p className="text-emerald-400 text-xs">No major risk factors detected!</p>
-                )}
-              </div>
-              <div className="space-y-2">
-                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Success Factors</p>
-                {decision.successFactors?.slice(0, 2).map((f, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-slate-500">
-                    <span className="text-emerald-400 mt-0.5">✓</span>
-                    <span>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          ) : (
-            <div className="text-center py-10">
-              <RiShieldCheckLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-400 text-sm">Run career analysis to see your risk level</p>
-            </div>
-          )}
-        </div>
-      </div>
-
-
-      {/* ROW 3: Roadmap Preview / Quick Links */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-        {/* Roadmap preview */}
-        <div className="neon-glass-card-hover p-6 md:col-span-2">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="section-title">Roadmap Progress</h3>
-            <Link to="/roadmap" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Full Roadmap <RiArrowRightLine /></Link>
-          </div>
-          <div className="text-center py-8 border border-white/5 rounded-xl border-dashed">
-            <RiRoadMapLine className="text-5xl text-slate-600 mx-auto mb-3" />
-            <p className="text-slate-500 text-sm mb-3">Generate your personalized learning roadmap</p>
-            <Link to="/roadmap" className="btn-primary text-sm px-5 py-2.5">Generate Roadmap</Link>
+          <div>
+            <p className="text-white font-black text-xl mb-1 uppercase tracking-tighter">DevGap Rating</p>
+            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest opacity-60">Unified Career Readiness Score</p>
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="neon-glass-card-hover p-6">
-          <h3 className="section-title mb-4">Quick Actions</h3>
-          <div className="space-y-2">
-            {[
-              { icon: RiBrainLine, label: 'Intent Engine', sub: 'Tell us your goals', path: '/career-intent', color: 'text-purple-400' },
-              { icon: RiGithubLine, label: 'GitHub Analyzer', sub: 'Analyze your repos', path: '/github', color: 'text-blue-400' },
-              { icon: RiFileTextLine, label: 'Upload Resume', sub: 'Extract your skills', path: '/resume', color: 'text-green-400' },
-              { icon: RiLineChartLine, label: 'Job Trends', sub: 'See what\'s hot', path: '/trends', color: 'text-red-400' },
-            ].map(({ icon: Icon, label, sub, path, color }) => (
-              <Link key={path} to={path}
-                className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/5 transition-colors group">
-                <Icon className={`text-xl flex-shrink-0 ${color}`} />
-                <div>
-                  <p className="text-sm text-white font-medium group-hover:text-primary-400 transition-colors">{label}</p>
-                  <p className="text-xs text-slate-400">{sub}</p>
+        {/* Decision & Risk Module */}
+        <div className="neon-glass-card-hover p-6 flex flex-col gap-6">
+           <div className="flex items-center justify-between">
+              <p className="text-[10px] text-slate-400 font-black uppercase tracking-[0.2em] italic">Current Trajectory</p>
+              <RiShieldCheckLine className="text-primary-400 text-xl" />
+           </div>
+           {decision ? (
+             <div className="space-y-6 flex-1 flex flex-col justify-center">
+                <div className="bg-primary-500/5 border border-primary-500/20 p-5 rounded-[2rem] text-center">
+                   <p className="text-[10px] text-primary-400 font-bold uppercase mb-2 tracking-widest">Target Path</p>
+                   <p className="text-white font-black text-2xl tracking-tighter uppercase">{decision.bestPath}</p>
                 </div>
-                <RiArrowRightLine className="ml-auto text-slate-600 group-hover:text-primary-400 transition-colors" />
-              </Link>
-            ))}
-          </div>
+                <div className="flex items-center justify-between px-2">
+                   <div className="flex flex-col gap-1">
+                      <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest leading-none">Risk Profile</p>
+                      <span className={`text-xs font-black uppercase tracking-tighter ${decision.failureRisk === 'low' ? 'text-emerald-400' : 'text-red-400'}`}>{decision.failureRisk} Risk</span>
+                   </div>
+                   <div className="w-px h-6 bg-white/10" />
+                   <div className="flex flex-col gap-1 text-right">
+                      <p className="text-[9px] text-slate-500 font-black uppercase tracking-widest leading-none">Eligibility</p>
+                      <span className={`text-xs font-black uppercase tracking-tighter ${decision.jobEligible ? 'text-emerald-400' : 'text-slate-500'}`}>{decision.jobEligible ? 'Verified' : 'Pending'}</span>
+                   </div>
+                </div>
+             </div>
+           ) : (
+             <div className="flex-1 flex flex-col items-center justify-center text-center gap-4 py-6 opacity-40">
+                <RiBrainLine size={40} className="text-slate-700" />
+                <p className="text-[11px] text-slate-500 font-black uppercase tracking-[0.2em] leading-relaxed">Intelligence Incomplete.<br/>Sync Intent Engine to proceed.</p>
+             </div>
+           )}
         </div>
       </div>
     </div>

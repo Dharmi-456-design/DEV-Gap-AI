@@ -81,7 +81,7 @@ export default function LoginPage() {
         </div>
 
         {/* Testimonial */}
-        <div className="p-4 bg-slate-900/40/5 border border-white/10 rounded-2xl backdrop-blur-md">
+        <div className="p-4 bg-slate-900/50 border border-white/10 rounded-2xl backdrop-blur-md">
           <p className="text-slate-300 text-sm italic leading-relaxed">
             "DevGap AI transformed how I prepare for interviews. The AI roadmap is incredibly accurate."
           </p>

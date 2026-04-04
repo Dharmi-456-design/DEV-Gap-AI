@@ -241,10 +241,10 @@ export default function InterviewPrepPlatform() {
       {/* Top Navbar */}
       <div className="h-16 border-b border-white/10 bg-slate-900/60 flex items-center justify-between px-6 flex-shrink-0 sticky top-0 z-50">
          <div className="flex items-center gap-4">
-            <button onClick={() => setSetupMode(true)} className="text-slate-500 hover:text-white transition flex items-center gap-1 text-sm font-bold bg-slate-900/40/5 px-3 py-1.5 rounded-lg border border-white/5">
+            <button onClick={() => setSetupMode(true)} className="text-slate-500 hover:text-white transition flex items-center gap-1 text-sm font-bold bg-slate-900/50 px-3 py-1.5 rounded-lg border border-white/5">
                <RiArrowLeftLine /> Leave
             </button>
-            <div className="h-6 w-px bg-slate-900/40/10 hidden md:block" />
+            <div className="h-6 w-px bg-slate-900/80 hidden md:block" />
             <div className="flex flex-col">
               <span className="font-black text-white text-sm md:text-base hidden sm:block">{question.category} Interview</span>
               <span className="text-xs text-slate-400 font-medium">Difficulty: <span className="text-cyan-400">{question.difficulty}</span></span>

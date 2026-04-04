@@ -134,7 +134,7 @@ export default function GithubPage() {
                         </span>
                         <span className="text-slate-500">{pct}% ({count} repos)</span>
                       </div>
-                      <div className="h-1.5 bg-slate-900/40/10 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-slate-900/80 rounded-full overflow-hidden">
                         <div style={{ width: `${pct}%`, background: langColors[lang] || '#94a3b8' }} className="h-full rounded-full transition-all duration-1000" />
                       </div>
                     </div>

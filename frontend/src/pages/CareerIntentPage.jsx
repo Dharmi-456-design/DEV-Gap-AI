@@ -98,7 +98,7 @@ export default function CareerIntentPage() {
         {/* Progress */}
         <div className="flex gap-2 mb-8">
           {steps.map((_, i) => (
-            <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-gradient-to-r from-primary-500 to-secondary-500' : 'bg-slate-900/40/5'}`} />
+            <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-gradient-to-r from-primary-500 to-secondary-500' : 'bg-slate-900/50'}`} />
           ))}
         </div>
 
@@ -117,7 +117,7 @@ export default function CareerIntentPage() {
                   className={`p-4 rounded-xl border text-left transition-all duration-200 ${
                     answers[current.id] === opt.value
                       ? 'bg-primary-500/15 border-primary-500/50 shadow-lg shadow-primary-500/10'
-                      : 'border-white/5 bg-slate-900/40/5 hover:border-white/15 hover:bg-slate-800/5'
+                      : 'border-white/5 bg-slate-900/50 hover:border-white/15 hover:bg-slate-800/5'
                   }`}
                 >
                   <div className="flex items-start justify-between">
@@ -149,7 +149,7 @@ export default function CareerIntentPage() {
                     <input
                       type="range" min="1" max="10" value={answers[s.id]}
                       onChange={e => setAnswers({ ...answers, [s.id]: Number(e.target.value) })}
-                      className="w-full h-2 bg-slate-900/40/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r [&::-webkit-slider-thumb]:from-primary-500 [&::-webkit-slider-thumb]:to-secondary-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
+                      className="w-full h-2 bg-slate-900/80 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r [&::-webkit-slider-thumb]:from-primary-500 [&::-webkit-slider-thumb]:to-secondary-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
                     />
                     <div className="flex justify-between text-xs text-slate-600 mt-1">
                       <span>1 (Low)</span><span>5 (Mid)</span><span>10 (High)</span>

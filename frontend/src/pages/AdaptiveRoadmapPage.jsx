@@ -68,7 +68,7 @@ export default function AdaptiveRoadmapPage() {
             <RiPsychotherapyLine /> SENIOR MENTOR MODE
           </div>
           <h1 className="text-3xl font-black text-white mb-2">{data.roadmap_title}</h1>
-          <p className="text-slate-500 text-sm">Target Role: <strong className="text-white bg-slate-900/40/5 px-2 py-0.5 rounded ml-1">{data.target_role}</strong></p>
+          <p className="text-slate-500 text-sm">Target Role: <strong className="text-white bg-slate-900/50 px-2 py-0.5 rounded ml-1">{data.target_role}</strong></p>
         </div>
         <button onClick={handleGenerate} className="px-5 py-2.5 bg-slate-900/40 border border-white/10 hover:border-purple-500/50 text-slate-300 hover:text-purple-400 rounded-xl transition-all text-sm font-bold flex items-center justify-center gap-2">
            Re-evaluate Plan

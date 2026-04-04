@@ -94,7 +94,7 @@ export default function ResumePage() {
               </div>
             ) : (
               <div className="flex flex-col items-center gap-3">
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isDragActive ? 'bg-primary-500/20' : 'bg-slate-900/40/5'}`}>
+                <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${isDragActive ? 'bg-primary-500/20' : 'bg-slate-900/50'}`}>
                   <RiUploadCloud2Line className={`text-xl ${isDragActive ? 'text-primary-400' : 'text-slate-500'}`} />
                 </div>
                 <div>
@@ -194,7 +194,7 @@ export default function ResumePage() {
                            <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1.5">{group}</p>
                            <div className="flex flex-wrap gap-1.5">
                              {resume.groupedSkills[group].map((s, i) => (
-                               <span key={i} className="px-2 py-0.5 bg-slate-900/40/5 text-slate-300 border border-white/5 rounded text-[10px] uppercase">{s}</span>
+                               <span key={i} className="px-2 py-0.5 bg-slate-900/50 text-slate-300 border border-white/5 rounded text-[10px] uppercase">{s}</span>
                              ))}
                            </div>
                          </div>

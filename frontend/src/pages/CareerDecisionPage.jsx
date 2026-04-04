@@ -302,7 +302,7 @@ export default function CareerDecisionPage() {
           </div>
           <div className="space-y-3">
             {decision.skillGaps?.length > 0 ? decision.skillGaps.map((gap, i) => (
-              <div key={i} className="flex items-center justify-between p-3 bg-slate-900/40/5 rounded-xl">
+              <div key={i} className="flex items-center justify-between p-3 bg-slate-900/50 rounded-xl">
                 <div>
                   <p className="text-white text-sm font-semibold capitalize">{gap.skill}</p>
                   <p className="text-slate-500 text-xs">{gap.estimatedTime} to learn</p>

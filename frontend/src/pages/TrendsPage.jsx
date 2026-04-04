@@ -35,7 +35,7 @@ function MockTestGeneratorCard({ missingSkills }) {
             ) : (
               <div className="flex flex-wrap gap-2">
                 {skillsToTest.map(skill => (
-                  <span key={skill} className="px-3 py-1.5 bg-slate-900/40/5 border border-white/10 rounded-xl text-sm font-medium text-slate-300 shadow-sm group-hover:border-purple-500/30 group-hover:text-purple-300 transition-all cursor-default">
+                  <span key={skill} className="px-3 py-1.5 bg-slate-900/50 border border-white/10 rounded-xl text-sm font-medium text-slate-300 shadow-sm group-hover:border-purple-500/30 group-hover:text-purple-300 transition-all cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -137,7 +137,7 @@ export default function TrendsPage() {
         <h3 className="section-title mb-5">🚀 Trending Skills & Salaries</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {trends?.trendingSkills?.map((item, i) => (
-            <div key={i} className="flex items-center gap-4 p-4 bg-slate-900/40/5 border border-white/5 rounded-xl hover:border-primary-500/20 transition-all duration-200 group">
+            <div key={i} className="flex items-center gap-4 p-4 bg-slate-900/50 border border-white/5 rounded-xl hover:border-primary-500/20 transition-all duration-200 group">
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
                   <p className="text-white font-semibold text-sm group-hover:text-primary-400 transition-colors">{item.skill}</p>
@@ -161,7 +161,7 @@ export default function TrendsPage() {
           <h3 className="section-title mb-4">🌱 Top Emerging Roles</h3>
           <div className="space-y-3">
             {trends?.topEmergingRoles?.map((role, i) => (
-              <div key={i} className="flex items-center gap-3 p-3 bg-slate-900/40/5 rounded-xl">
+              <div key={i} className="flex items-center gap-3 p-3 bg-slate-900/50 rounded-xl">
                 <div className="w-7 h-7 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-full flex items-center justify-center text-white text-xs font-black flex-shrink-0">
                   {i + 1}
                 </div>
