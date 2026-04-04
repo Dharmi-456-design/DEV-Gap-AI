@@ -16,13 +16,24 @@ import analyticsRoutes from './routes/analyticsRoutes.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Load .env from root
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+// Load .env only in development
+if (process.env.NODE_ENV !== 'production') {
+  dotenv.config({ path: path.resolve(__dirname, '../.env') });
+}
+
 connectDB();
 
 const app = express();
 
-app.use(cors({ origin: 'http://localhost:3000', credentials: true }));
+// Production-ready CORS
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' 
+    ? false // Disable CORS for own-origin frontend in unified build
+    : 'http://localhost:3000', 
+  credentials: true
+};
+app.use(cors(corsOptions));
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -39,13 +50,21 @@ app.use('/api/analytics', analyticsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'DevGap AI Server Running 🚀', time: new Date() }));
 
+// --- PRODUCTION SERVING ---
+if (process.env.NODE_ENV === 'production') {
+  const frontendDistPath = path.join(__dirname, '../frontend/dist');
+  app.use(express.static(frontendDistPath));
+  
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(frontendDistPath, 'index.html'));
+  });
+}
+// --------------------------
+
 // Error Handling Middleware
 app.use((err, req, res, next) => {
-  // If the response status code is 200, set it to 500
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  
   console.error(`[SERVER ERROR] ${err.stack}`);
-
   res.status(statusCode).json({
     message: err.message || 'Internal Server Error',
     stack: process.env.NODE_ENV === 'production' ? null : err.stack,
