@@ -59,38 +59,38 @@ function TodaysFocus() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {/* Daily Challenge */}
-      <div className="md:col-span-2 glass-card p-5 border border-gold-500/10">
+      <div className="md:col-span-2 neon-glass-card p-5 border border-primary-500/10">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
             <span className="text-2xl">{challenge.emoji}</span>
             <div>
-              <p className="text-xs text-gold-400 font-bold uppercase tracking-wider">Today's Challenge</p>
+              <p className="text-xs text-primary-400 font-bold uppercase tracking-wider">Today's Challenge</p>
               <h3 className="text-white font-bold text-base">{challenge.title}</h3>
             </div>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-black text-gold-400">{doneCount}/{challenge.tasks.length}</p>
-            <p className="text-xs text-slate-500">completed</p>
+            <p className="text-2xl font-black text-primary-400">{doneCount}/{challenge.tasks.length}</p>
+            <p className="text-xs text-slate-400">completed</p>
           </div>
         </div>
-        <div className="h-1.5 bg-obsidian-600 rounded-full overflow-hidden mb-4">
+        <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden mb-4">
           <div
             style={{ width: `${(doneCount / challenge.tasks.length) * 100}%`, transition: 'width 0.6s ease-out' }}
-            className="h-full bg-gradient-to-r from-gold-500 to-orange-500 rounded-full"
+            className="h-full bg-gradient-to-r from-primary-600 to-secondary-500 rounded-full"
           />
         </div>
         <div className="space-y-2">
           {challenge.tasks.map((task, i) => (
             <button key={i} onClick={() => toggle(i)}
               className={`w-full flex items-center gap-3 p-3 rounded-xl border text-left transition-all duration-200 ${
-                checked[i] ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-obsidian-700/40 border-white/5 hover:border-gold-500/20'
+                checked[i] ? 'bg-emerald-500/5 border-emerald-500/20' : 'bg-slate-700/40 border-white/5 hover:border-primary-500/20'
               }`}>
               <div className={`w-5 h-5 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all ${
                 checked[i] ? 'bg-emerald-500 border-emerald-500' : 'border-slate-600'
               }`}>
                 {checked[i] && <RiCheckboxCircleLine className="text-white text-xs" />}
               </div>
-              <span className={`text-sm ${checked[i] ? 'text-slate-400 line-through' : 'text-slate-200'}`}>{task}</span>
+              <span className={`text-sm ${checked[i] ? 'text-slate-500 line-through' : 'text-slate-200'}`}>{task}</span>
             </button>
           ))}
         </div>
@@ -103,7 +103,7 @@ function TodaysFocus() {
       </div>
 
       {/* Quote of the Day */}
-      <div className="glass-card p-5 bg-gradient-to-br from-purple-900/20 to-obsidian-800 border border-purple-500/10 flex flex-col justify-between">
+      <div className="neon-glass-card p-5 bg-gradient-to-br from-purple-900/20 to-obsidian-800 border border-purple-500/10 flex flex-col justify-between">
         <div>
           <div className="flex items-center gap-2 mb-4">
             <RiFlashlightLine className="text-purple-400 text-base" />
@@ -112,7 +112,7 @@ function TodaysFocus() {
           <p className="text-slate-200 text-sm leading-relaxed italic mb-4">
             "{quote.text}"
           </p>
-          <p className="text-slate-500 text-xs">— {quote.author}</p>
+          <p className="text-slate-400 text-xs">— {quote.author}</p>
         </div>
         <Link to="/mentor-mode"
           className="mt-4 w-full py-2.5 text-sm font-bold text-center bg-purple-600/20 text-purple-300 border border-purple-500/20 rounded-xl hover:bg-purple-600/30 hover:border-purple-500/30 transition-all">
@@ -158,8 +158,8 @@ export default function DashboardPage() {
   if (loading) return (
     <div className="p-8 flex items-center justify-center min-h-screen">
       <div className="text-center">
-        <div className="w-12 h-12 border-4 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-slate-400">Loading your dashboard...</p>
+        <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-slate-500">Loading your dashboard...</p>
       </div>
     </div>
   );
@@ -170,13 +170,13 @@ export default function DashboardPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-black text-white">
-            {greeting}, <span className="gradient-text">{user?.name?.split(' ')[0]}</span> 👋
+            {greeting}, <span className="glow-text text-white/90">{user?.name?.split(' ')[0]}</span> 👋
           </h1>
-          <p className="text-slate-400 text-sm mt-1">Here's your career intelligence overview</p>
+          <p className="text-slate-500 text-sm mt-1">Here's your career intelligence overview</p>
         </div>
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 rounded-full bg-emerald-400 live-pulse" />
-          <span className="text-xs text-slate-400">Live</span>
+          <span className="text-xs text-slate-500">Live</span>
         </div>
       </div>
 
@@ -197,7 +197,7 @@ export default function DashboardPage() {
               <p className="text-white font-black text-lg">Mentor Mode — Human Decision Engine</p>
               <span className="text-xs font-bold px-2 py-0.5 bg-purple-500/20 text-purple-300 border border-purple-500/30 rounded-md">NEW</span>
             </div>
-            <p className="text-slate-400 text-sm leading-relaxed">
+            <p className="text-slate-500 text-sm leading-relaxed">
               A strict career mentor who challenges your decisions, detects contradictions, and gives you a brutally honest <strong className="text-purple-300">Human Readiness Score</strong>. Not AI advice — human-like thinking.
             </p>
           </div>
@@ -208,66 +208,66 @@ export default function DashboardPage() {
       {/* ROW 1: Profile / Score / Decision */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Profile Card */}
-        <div className="glass-card-hover p-6 flex flex-col gap-4">
+        <div className="neon-glass-card-hover p-6 flex flex-col gap-4">
           <div className="flex items-center gap-4">
-            <div className="w-14 h-14 bg-gradient-to-br from-gold-500 to-orange-500 rounded-2xl flex items-center justify-center text-obsidian-900 text-2xl font-black shadow-lg shadow-gold-500/30">
+            <div className="w-14 h-14 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-2xl flex items-center justify-center text-slate-900 text-2xl font-black shadow-lg shadow-primary-500/30">
               {user?.name?.[0]?.toUpperCase()}
             </div>
             <div>
               <h3 className="font-bold text-white text-lg">{user?.name}</h3>
-              <p className="text-slate-400 text-sm">{profile?.targetRole || 'Set your target role'}</p>
-              <p className="text-xs text-slate-500">{user?.email}</p>
+              <p className="text-slate-500 text-sm">{profile?.targetRole || 'Set your target role'}</p>
+              <p className="text-xs text-slate-400">{user?.email}</p>
             </div>
           </div>
           <div className="space-y-2">
             {completionSteps.map(({ done, label, icon: Icon, path }) => (
               <Link key={label} to={path} className="flex items-center gap-2 text-sm group">
-                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${done ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-slate-500'}`}>
+                <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${done ? 'bg-emerald-500/20 text-emerald-400' : 'bg-slate-900/40/5 text-slate-400'}`}>
                   <Icon size={11} />
                 </div>
-                <span className={`flex-1 ${done ? 'text-emerald-400' : 'text-slate-500'}`}>{label}</span>
-                {!done && <RiArrowRightLine size={12} className="text-slate-600 group-hover:text-gold-400 transition-colors" />}
+                <span className={`flex-1 ${done ? 'text-emerald-400' : 'text-slate-400'}`}>{label}</span>
+                {!done && <RiArrowRightLine size={12} className="text-slate-600 group-hover:text-primary-400 transition-colors" />}
               </Link>
             ))}
           </div>
           <div className="mt-auto">
-            <div className="flex justify-between text-xs text-slate-400 mb-1">
+            <div className="flex justify-between text-xs text-slate-500 mb-1">
               <span>Profile Completion</span>
-              <span className="text-gold-400 font-bold">{completionPct}%</span>
+              <span className="text-primary-400 font-bold">{completionPct}%</span>
             </div>
-            <div className="h-1.5 bg-obsidian-600 rounded-full overflow-hidden">
-              <div style={{ width: `${completionPct}%` }} className="h-full bg-gradient-to-r from-gold-500 to-orange-500 rounded-full transition-all duration-1000" />
+            <div className="h-1.5 bg-slate-600 rounded-full overflow-hidden">
+              <div style={{ width: `${completionPct}%` }} className="h-full bg-gradient-to-r from-primary-600 to-secondary-500 rounded-full transition-all duration-1000" />
             </div>
           </div>
         </div>
 
         {/* DevGap Score */}
-        <div className="glass-card-hover p-6 flex flex-col items-center justify-center gap-4 text-center glow-gold">
-          <p className="label-gold">DevGap Score</p>
+        <div className="neon-glass-card-hover p-6 flex flex-col items-center justify-center gap-4 text-center glow-primary">
+          <p className="label-primary">DevGap Score</p>
           <ScoreRing score={devGapScore} size={120} />
           <div>
             <p className="text-white font-bold">
               {devGapScore >= 80 ? '🚀 Excellent' : devGapScore >= 60 ? '⚡ Good Progress' : devGapScore >= 40 ? '📈 Developing' : '🌱 Getting Started'}
             </p>
-            <p className="text-slate-400 text-xs mt-1">
+            <p className="text-slate-500 text-xs mt-1">
               {decision ? `Targeting: ${decision.bestPath}` : 'Run Career Analysis to get your score'}
             </p>
           </div>
           {!decision && (
-            <Link to="/career-intent" className="btn-gold text-sm px-4 py-2">Start Analysis</Link>
+            <Link to="/career-intent" className="btn-primary text-sm px-4 py-2">Start Analysis</Link>
           )}
         </div>
 
         {/* Life Decision */}
-        <div className="glass-card-hover p-6 flex flex-col gap-4">
+        <div className="neon-glass-card-hover p-6 flex flex-col gap-4">
           <div className="flex items-center gap-2 mb-1">
-            <RiLightbulbLine className="text-gold-400 text-xl" />
+            <RiLightbulbLine className="text-primary-400 text-xl" />
             <h3 className="section-title text-base">Life Decision</h3>
           </div>
           {decision ? (
             <>
-              <div className="p-3 bg-gold-500/10 border border-gold-500/20 rounded-xl">
-                <p className="text-xs text-gold-400 font-semibold mb-1">BEST CAREER PATH</p>
+              <div className="p-3 bg-primary-500/10 border border-primary-500/20 rounded-xl">
+                <p className="text-xs text-primary-400 font-semibold mb-1">BEST CAREER PATH</p>
                 <p className="text-white font-bold text-lg">{decision.bestPath}</p>
               </div>
               <div className="flex items-center gap-3">
@@ -275,21 +275,21 @@ export default function DashboardPage() {
                   <RiShieldCheckLine size={10} />
                   {decision.failureRisk?.toUpperCase()} RISK
                 </div>
-                <span className="text-slate-400 text-xs">{decision.timeRequired}</span>
+                <span className="text-slate-500 text-xs">{decision.timeRequired}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-slate-300">
-                <RiTimeLine className="text-gold-400" />
+                <RiTimeLine className="text-primary-400" />
                 <span>Job Eligible: <span className={decision.jobEligible ? 'text-emerald-400 font-bold' : 'text-red-400 font-bold'}>{decision.jobEligible ? 'YES ✓' : 'NOT YET'}</span></span>
               </div>
-              <Link to="/career-decision" className="text-gold-400 text-sm font-medium hover:text-gold-300 flex items-center gap-1 mt-auto">
+              <Link to="/career-decision" className="text-primary-400 text-sm font-medium hover:text-primary-300 flex items-center gap-1 mt-auto">
                 View Full Report <RiArrowRightLine />
               </Link>
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center gap-3 py-4">
               <RiBrainLine className="text-4xl text-slate-600" />
-              <p className="text-slate-400 text-sm">Complete Intent Engine + GitHub Analysis to unlock your career decision</p>
-              <Link to="/career-intent" className="btn-gold text-sm px-4 py-2">Start Now</Link>
+              <p className="text-slate-500 text-sm">Complete Intent Engine + GitHub Analysis to unlock your career decision</p>
+              <Link to="/career-intent" className="btn-primary text-sm px-4 py-2">Start Now</Link>
             </div>
           )}
         </div>
@@ -298,15 +298,15 @@ export default function DashboardPage() {
       {/* ROW 2: Skills / Portfolio / Risk */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Skills */}
-        <div className="glass-card-hover p-6">
+        <div className="neon-glass-card-hover p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="section-title">Detected Skills</h3>
-            <Link to="/resume" className="text-gold-400 text-xs hover:text-gold-300 flex items-center gap-1">Upload Resume <RiArrowRightLine /></Link>
+            <Link to="/resume" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Upload Resume <RiArrowRightLine /></Link>
           </div>
           {resume?.extractedSkills?.length > 0 ? (
             <div className="flex flex-wrap gap-2">
               {resume.extractedSkills.map(skill => (
-                <span key={skill} className="px-2 py-1 bg-obsidian-700 border border-white/5 rounded-lg text-xs text-slate-300 capitalize">
+                <span key={skill} className="px-2 py-1 bg-slate-700 border border-white/5 rounded-lg text-xs text-slate-300 capitalize">
                   {skill}
                 </span>
               ))}
@@ -314,37 +314,37 @@ export default function DashboardPage() {
           ) : (
             <div className="text-center py-6">
               <RiFileTextLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-500 text-sm">Upload your resume to extract skills</p>
-              <Link to="/resume" className="text-gold-400 text-xs mt-2 inline-block hover:text-gold-300">Upload PDF →</Link>
+              <p className="text-slate-400 text-sm">Upload your resume to extract skills</p>
+              <Link to="/resume" className="text-primary-400 text-xs mt-2 inline-block hover:text-primary-300">Upload PDF →</Link>
             </div>
           )}
         </div>
 
         {/* Portfolio Score */}
-        <div className="glass-card-hover p-6">
+        <div className="neon-glass-card-hover p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="section-title">Portfolio Score</h3>
-            <Link to="/github" className="text-gold-400 text-xs hover:text-gold-300 flex items-center gap-1">Analyze <RiArrowRightLine /></Link>
+            <Link to="/github" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Analyze <RiArrowRightLine /></Link>
           </div>
           {github ? (
             <div className="space-y-4">
               <div className="flex items-center gap-4">
-                <img src={github.avatarUrl} alt="avatar" className="w-12 h-12 rounded-full border-2 border-gold-500/30" />
+                <img src={github.avatarUrl} alt="avatar" className="w-12 h-12 rounded-full border-2 border-primary-500/30" />
                 <div>
                   <p className="text-white font-bold">@{github.username}</p>
-                  <p className="text-slate-400 text-xs">{github.publicRepos} repos · {github.followers} followers</p>
+                  <p className="text-slate-500 text-xs">{github.publicRepos} repos · {github.followers} followers</p>
                 </div>
               </div>
               {[
-                { label: 'Portfolio Score', value: github.portfolioScore, color: 'from-gold-500 to-orange-500' },
+                { label: 'Portfolio Score', value: github.portfolioScore, color: 'from-primary-600 to-secondary-500' },
                 { label: 'Activity Score', value: github.activityScore, color: 'from-blue-500 to-cyan-500' },
               ].map(({ label, value, color }) => (
                 <div key={label}>
                   <div className="flex justify-between text-xs mb-1">
-                    <span className="text-slate-400">{label}</span>
+                    <span className="text-slate-500">{label}</span>
                     <span className="text-white font-bold">{value}/100</span>
                   </div>
-                  <div className="h-2 bg-obsidian-600 rounded-full overflow-hidden">
+                  <div className="h-2 bg-slate-600 rounded-full overflow-hidden">
                     <div style={{ width: `${value}%` }} className={`h-full bg-gradient-to-r ${color} rounded-full`} />
                   </div>
                 </div>
@@ -355,9 +355,9 @@ export default function DashboardPage() {
                   { label: '📦 Repos', value: github.publicRepos },
                   { label: '👥 Followers', value: github.followers },
                 ].map(({ label, value }) => (
-                  <div key={label} className="bg-obsidian-700 rounded-xl p-2">
+                  <div key={label} className="bg-slate-700 rounded-xl p-2">
                     <p className="text-white font-bold text-sm">{value}</p>
-                    <p className="text-slate-500 text-xs">{label}</p>
+                    <p className="text-slate-400 text-xs">{label}</p>
                   </div>
                 ))}
               </div>
@@ -365,31 +365,31 @@ export default function DashboardPage() {
           ) : (
             <div className="text-center py-6">
               <RiGithubLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-500 text-sm">Analyze your GitHub profile</p>
-              <Link to="/github" className="text-gold-400 text-xs mt-2 inline-block hover:text-gold-300">Connect GitHub →</Link>
+              <p className="text-slate-400 text-sm">Analyze your GitHub profile</p>
+              <Link to="/github" className="text-primary-400 text-xs mt-2 inline-block hover:text-primary-300">Connect GitHub →</Link>
             </div>
           )}
         </div>
 
         {/* Risk Meter */}
-        <div className="glass-card-hover p-6">
+        <div className="neon-glass-card-hover p-6">
           <div className="flex items-center justify-between mb-4">
             <h3 className="section-title">Risk Analysis</h3>
-            <Link to="/career-decision" className="text-gold-400 text-xs hover:text-gold-300 flex items-center gap-1">Details <RiArrowRightLine /></Link>
+            <Link to="/career-decision" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Details <RiArrowRightLine /></Link>
           </div>
           {decision ? (
             <div className="space-y-4">
-              <div className={`p-4 rounded-xl text-center animated-border border ${decision.failureRisk === 'low' ? 'bg-emerald-500/10' : decision.failureRisk === 'medium' ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
+              <div className={`p-4 rounded-xl text-center neon-glass-card border ${decision.failureRisk === 'low' ? 'bg-emerald-500/10' : decision.failureRisk === 'medium' ? 'bg-amber-500/10' : 'bg-red-500/10'}`}>
                 <p className="text-4xl mb-2">{decision.failureRisk === 'low' ? '🟢' : decision.failureRisk === 'medium' ? '🟡' : '🔴'}</p>
                 <p className={`font-black text-2xl ${decision.failureRisk === 'low' ? 'text-emerald-400' : decision.failureRisk === 'medium' ? 'text-amber-400' : 'text-red-400'}`}>
                   {decision.failureRisk?.toUpperCase()} RISK
                 </p>
-                <p className="text-slate-400 text-xs mt-1">{decision.confidencePercent}% confidence score</p>
+                <p className="text-slate-500 text-xs mt-1">{decision.confidencePercent}% confidence score</p>
               </div>
               <div className="space-y-2">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Failure Factors</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Failure Factors</p>
                 {decision.failureReasons?.slice(0, 2).map((r, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-slate-400">
+                  <div key={i} className="flex items-start gap-2 text-xs text-slate-500">
                     <span className="text-red-400 mt-0.5">⚠</span>
                     <span>{r}</span>
                   </div>
@@ -399,9 +399,9 @@ export default function DashboardPage() {
                 )}
               </div>
               <div className="space-y-2">
-                <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider">Success Factors</p>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Success Factors</p>
                 {decision.successFactors?.slice(0, 2).map((f, i) => (
-                  <div key={i} className="flex items-start gap-2 text-xs text-slate-400">
+                  <div key={i} className="flex items-start gap-2 text-xs text-slate-500">
                     <span className="text-emerald-400 mt-0.5">✓</span>
                     <span>{f}</span>
                   </div>
@@ -411,7 +411,7 @@ export default function DashboardPage() {
           ) : (
             <div className="text-center py-10">
               <RiShieldCheckLine className="text-4xl text-slate-600 mx-auto mb-2" />
-              <p className="text-slate-500 text-sm">Run career analysis to see your risk level</p>
+              <p className="text-slate-400 text-sm">Run career analysis to see your risk level</p>
             </div>
           )}
         </div>
@@ -421,20 +421,20 @@ export default function DashboardPage() {
       {/* ROW 3: Roadmap Preview / Quick Links */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
         {/* Roadmap preview */}
-        <div className="glass-card-hover p-6 md:col-span-2">
+        <div className="neon-glass-card-hover p-6 md:col-span-2">
           <div className="flex items-center justify-between mb-4">
             <h3 className="section-title">Roadmap Progress</h3>
-            <Link to="/roadmap" className="text-gold-400 text-xs hover:text-gold-300 flex items-center gap-1">Full Roadmap <RiArrowRightLine /></Link>
+            <Link to="/roadmap" className="text-primary-400 text-xs hover:text-primary-300 flex items-center gap-1">Full Roadmap <RiArrowRightLine /></Link>
           </div>
           <div className="text-center py-8 border border-white/5 rounded-xl border-dashed">
             <RiRoadMapLine className="text-5xl text-slate-600 mx-auto mb-3" />
-            <p className="text-slate-400 text-sm mb-3">Generate your personalized learning roadmap</p>
-            <Link to="/roadmap" className="btn-gold text-sm px-5 py-2.5">Generate Roadmap</Link>
+            <p className="text-slate-500 text-sm mb-3">Generate your personalized learning roadmap</p>
+            <Link to="/roadmap" className="btn-primary text-sm px-5 py-2.5">Generate Roadmap</Link>
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="glass-card-hover p-6">
+        <div className="neon-glass-card-hover p-6">
           <h3 className="section-title mb-4">Quick Actions</h3>
           <div className="space-y-2">
             {[
@@ -444,13 +444,13 @@ export default function DashboardPage() {
               { icon: RiLineChartLine, label: 'Job Trends', sub: 'See what\'s hot', path: '/trends', color: 'text-red-400' },
             ].map(({ icon: Icon, label, sub, path, color }) => (
               <Link key={path} to={path}
-                className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group">
+                className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-800/5 transition-colors group">
                 <Icon className={`text-xl flex-shrink-0 ${color}`} />
                 <div>
-                  <p className="text-sm text-white font-medium group-hover:text-gold-400 transition-colors">{label}</p>
-                  <p className="text-xs text-slate-500">{sub}</p>
+                  <p className="text-sm text-white font-medium group-hover:text-primary-400 transition-colors">{label}</p>
+                  <p className="text-xs text-slate-400">{sub}</p>
                 </div>
-                <RiArrowRightLine className="ml-auto text-slate-600 group-hover:text-gold-400 transition-colors" />
+                <RiArrowRightLine className="ml-auto text-slate-600 group-hover:text-primary-400 transition-colors" />
               </Link>
             ))}
           </div>

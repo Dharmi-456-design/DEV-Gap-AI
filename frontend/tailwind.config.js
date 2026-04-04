@@ -7,73 +7,53 @@ export default {
   theme: {
     extend: {
       colors: {
-        obsidian: {
-          950: '#060609',
-          900: '#0a0a0f',
-          800: '#12121a',
-          700: '#1a1a26',
-          600: '#22223a',
-          500: '#2a2a4a',
-          400: '#3a3a5a',
-          300: '#4a4a6a',
+        space: {
+          950: '#02030A', // Obsidian Black
+          900: '#0D0F1A', // Deep Graphite
+          800: '#121420', // Frosted Carbon
+          700: '#1f2937',
         },
-        gold: {
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
+        slate: {
+          950: '#02030A', // Obsidian Black
+          900: '#0D0F1A', // Deep Graphite
+          800: '#121420',
+          700: '#1f2937',
+          600: '#374151',
+          500: '#4b5563',
+          400: '#9ca3af',
+          300: '#d1d5db',
+          200: '#e5e7eb',
+          100: '#f3f4f6',
         },
-        orange: {
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-        },
+        primary: { 400: '#8b5cf6', 500: '#7C3AED', 600: '#6d28d9' }, // Aurora Purple
+        secondary: { 400: '#67e8f9', 500: '#14F1D9', 600: '#06b6d4' }, // Quantum Teal
+        accent: { 400: '#f472b6', 500: '#FF2E88', 600: '#db2777' }, // Plasma Pink
+        tertiary: { 400: '#fde047', 500: '#FACC15', 600: '#eab308' }, // Solar Gold
       },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-      },
+      fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
-        'slide-up': 'slideUp 0.4s ease-out',
-        'slide-in-left': 'slideInLeft 0.5s ease-out',
-        'slide-in-right': 'slideInRight 0.5s ease-out',
-        'pulse-gold': 'pulseGold 2s infinite',
-        'glow': 'glow 2s ease-in-out infinite alternate',
-        'bounce-soft': 'bounceSoft 1s ease-in-out infinite',
+        'pulse-glow': 'pulseGlow 3s ease-in-out infinite',
+        'radar-spin': 'radarSpin 4s linear infinite',
+        'typing': 'typing 1.5s steps(20, end) infinite',
+        'float': 'float 4s ease-in-out infinite',
+        'shimmer': 'shimmer 2.5s linear infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
+        pulseGlow: {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 15px rgba(59,130,246,0.2)', borderColor: 'rgba(59,130,246,0.3)' },
+          '50%': { opacity: '0.6', boxShadow: '0 0 25px rgba(34,211,238,0.4)', borderColor: 'rgba(34,211,238,0.5)' },
         },
-        slideUp: {
-          '0%': { transform: 'translateY(20px)', opacity: '0' },
-          '100%': { transform: 'translateY(0)', opacity: '1' },
-        },
-        pulseGold: {
-          '0%, 100%': { boxShadow: '0 0 0 0 rgba(251, 191, 36, 0.4)' },
-          '50%': { boxShadow: '0 0 0 10px rgba(251, 191, 36, 0)' },
-        },
-        slideInLeft: {
-          '0%': { transform: 'translateX(-30px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-        slideInRight: {
-          '0%': { transform: 'translateX(30px)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-        bounceSoft: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-4px)' },
-        },
-        glow: {
-          '0%': { textShadow: '0 0 10px rgba(251,191,36,0.5)' },
-          '100%': { textShadow: '0 0 20px rgba(251,191,36,0.9), 0 0 40px rgba(251,191,36,0.4)' },
-        },
-      },
-      backdropBlur: {
-        xs: '2px',
-      },
-    },
+        radarSpin: { '0%': { transform: 'rotate(0deg)' }, '100%': { transform: 'rotate(360deg)' } },
+        float: { '0%, 100%': { transform: 'translateY(0)' }, '50%': { transform: 'translateY(-10px)' } },
+        typing: { '0%, 40%, 100%': { transform: 'translateY(0)' }, '20%': { transform: 'translateY(-4px)' } },
+        shimmer: {
+          from: { backgroundPosition: '200% 0' },
+          to: { backgroundPosition: '-200% 0' }
+        }
+      }
+    }
   },
   plugins: [],
 }

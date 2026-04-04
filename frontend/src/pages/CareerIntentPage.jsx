@@ -88,25 +88,25 @@ export default function CareerIntentPage() {
       <div className="w-full max-w-2xl animate-fade-in">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 bg-gradient-to-br from-gold-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl shadow-gold-500/30">
-            <RiBrainLine className="text-2xl text-obsidian-900" />
+          <div className="w-14 h-14 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-xl shadow-primary-500/30">
+            <RiBrainLine className="text-2xl text-white" />
           </div>
           <h1 className="text-2xl font-black text-white">User Intent Engine</h1>
-          <p className="text-slate-400 text-sm mt-1">Answer honestly — the AI will be brutally truthful back</p>
+          <p className="text-slate-500 text-sm mt-1">Answer honestly — the AI will be brutally truthful back</p>
         </div>
 
         {/* Progress */}
         <div className="flex gap-2 mb-8">
           {steps.map((_, i) => (
-            <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-gradient-to-r from-gold-500 to-orange-500' : 'bg-obsidian-700'}`} />
+            <div key={i} className={`h-1 flex-1 rounded-full transition-all duration-500 ${i <= step ? 'bg-gradient-to-r from-primary-500 to-secondary-500' : 'bg-slate-900/40/5'}`} />
           ))}
         </div>
 
         {/* Card */}
-        <div className="glass-card p-8 animate-slide-up">
-          <p className="text-xs text-gold-400 font-semibold uppercase tracking-wider mb-2">Step {step + 1} of {steps.length}</p>
+        <div className="neon-glass-card p-8 animate-slide-up">
+          <p className="text-xs text-primary-400 font-semibold uppercase tracking-wider mb-2">Step {step + 1} of {steps.length}</p>
           <h2 className="text-2xl font-black text-white mb-1">{current.title}</h2>
-          <p className="text-slate-400 text-sm mb-6">{current.subtitle}</p>
+          <p className="text-slate-500 text-sm mb-6">{current.subtitle}</p>
 
           {current.type === 'choice' && (
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -116,19 +116,19 @@ export default function CareerIntentPage() {
                   onClick={() => setAnswers({ ...answers, [current.id]: opt.value })}
                   className={`p-4 rounded-xl border text-left transition-all duration-200 ${
                     answers[current.id] === opt.value
-                      ? 'bg-gold-500/15 border-gold-500/50 shadow-lg shadow-gold-500/10'
-                      : 'border-white/5 bg-obsidian-700/50 hover:border-white/15 hover:bg-obsidian-700'
+                      ? 'bg-primary-500/15 border-primary-500/50 shadow-lg shadow-primary-500/10'
+                      : 'border-white/5 bg-slate-900/40/5 hover:border-white/15 hover:bg-slate-800/5'
                   }`}
                 >
                   <div className="flex items-start justify-between">
                     <span className="text-lg mb-1 block">{opt.label}</span>
                     {answers[current.id] === opt.value && (
-                      <div className="w-5 h-5 bg-gold-500 rounded-full flex items-center justify-center flex-shrink-0">
-                        <RiCheckLine className="text-obsidian-900 text-xs" />
+                      <div className="w-5 h-5 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0">
+                        <RiCheckLine className="text-white text-xs" />
                       </div>
                     )}
                   </div>
-                  <p className="text-slate-400 text-xs">{opt.desc}</p>
+                  <p className="text-slate-500 text-xs">{opt.desc}</p>
                 </button>
               ))}
             </div>
@@ -141,15 +141,15 @@ export default function CareerIntentPage() {
                   <div className="flex justify-between items-center mb-2">
                     <div>
                       <p className="text-white font-semibold text-sm">{s.label}</p>
-                      <p className="text-slate-400 text-xs">{s.desc}</p>
+                      <p className="text-slate-500 text-xs">{s.desc}</p>
                     </div>
-                    <span className="text-gold-400 font-black text-xl w-10 text-right">{answers[s.id]}</span>
+                    <span className="text-primary-400 font-black text-xl w-10 text-right">{answers[s.id]}</span>
                   </div>
                   <div className="relative">
                     <input
                       type="range" min="1" max="10" value={answers[s.id]}
                       onChange={e => setAnswers({ ...answers, [s.id]: Number(e.target.value) })}
-                      className="w-full h-2 bg-obsidian-600 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r [&::-webkit-slider-thumb]:from-gold-500 [&::-webkit-slider-thumb]:to-orange-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
+                      className="w-full h-2 bg-slate-900/40/10 rounded-full appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-gradient-to-r [&::-webkit-slider-thumb]:from-primary-500 [&::-webkit-slider-thumb]:to-secondary-500 [&::-webkit-slider-thumb]:cursor-pointer [&::-webkit-slider-thumb]:shadow-lg"
                     />
                     <div className="flex justify-between text-xs text-slate-600 mt-1">
                       <span>1 (Low)</span><span>5 (Mid)</span><span>10 (High)</span>
@@ -171,10 +171,10 @@ export default function CareerIntentPage() {
             <button
               onClick={handleNext}
               disabled={!canNext() || loading}
-              className="btn-gold flex-1 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary flex-1 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
-                <><div className="w-5 h-5 border-2 border-obsidian-900/50 border-t-obsidian-900 rounded-full animate-spin" />Analyzing...</>
+                <><div className="w-5 h-5 border-2 border-slate-900/50 border-t-slate-900 rounded-full animate-spin" />Analyzing...</>
               ) : isLast ? (
                 <><RiSparklingLine />Generate Career Decision</>
               ) : (

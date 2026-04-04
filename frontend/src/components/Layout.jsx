@@ -28,23 +28,23 @@ export default function Layout() {
   const handleLogout = () => { logout(); navigate('/login'); };
 
   return (
-    <div className="flex h-screen bg-obsidian-900 overflow-hidden">
+    <div className="flex h-screen bg-slate-900 overflow-hidden">
       {/* Sidebar */}
-      <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} transition-all duration-300 flex-shrink-0 bg-obsidian-800 border-r border-white/5 flex flex-col`}>
+      <aside className={`${sidebarOpen ? 'w-64' : 'w-20'} transition-all duration-300 flex-shrink-0 bg-slate-800 border-r border-white/5 flex flex-col`}>
         {/* Logo */}
         <div className="p-4 border-b border-white/5 flex items-center gap-3">
-          <div className="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-gold-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-gold-500/30">
-            <RiSparklingLine className="text-obsidian-900 text-xl" />
+          <div className="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/30">
+            <RiSparklingLine className="text-slate-900 text-xl" />
           </div>
           {sidebarOpen && (
             <div>
-              <h1 className="font-black text-white text-sm leading-none">DevGap<span className="text-gold-400"> AI</span></h1>
-              <p className="text-xs text-slate-500 mt-0.5">Career Intelligence</p>
+              <h1 className="font-black text-white text-sm leading-none">DevGap<span className="text-primary-400"> AI</span></h1>
+              <p className="text-xs text-slate-400 mt-0.5">Career Intelligence</p>
             </div>
           )}
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            className="ml-auto text-slate-400 hover:text-gold-400 transition-colors"
+            className="ml-auto text-slate-500 hover:text-primary-400 transition-colors"
           >
             {sidebarOpen ? <RiCloseLine size={18} /> : <RiMenuLine size={18} />}
           </button>
@@ -61,10 +61,10 @@ export default function Layout() {
                   isActive
                     ? highlight
                       ? 'bg-gradient-to-r from-purple-600/30 to-blue-600/20 text-purple-300 border border-purple-500/30'
-                      : 'bg-gradient-to-r from-gold-500/20 to-orange-500/10 text-gold-400 border border-gold-500/20'
+                      : 'bg-gradient-to-r from-gold-500/20 to-orange-500/10 text-primary-400 border border-primary-500/20'
                     : highlight
                       ? 'text-purple-400 hover:text-purple-300 hover:bg-purple-500/10 border border-purple-500/10'
-                      : 'text-slate-400 hover:text-slate-200 hover:bg-white/5'
+                      : 'text-slate-500 hover:text-slate-200 hover:bg-slate-800/5'
                 }`
               }
             >
@@ -81,18 +81,18 @@ export default function Layout() {
 
         {/* User footer */}
         <div className="p-3 border-t border-white/5">
-          <div className={`flex items-center gap-3 p-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors ${!sidebarOpen && 'justify-center'}`}>
-            <div className="w-8 h-8 flex-shrink-0 bg-gradient-to-br from-gold-500 to-orange-500 rounded-full flex items-center justify-center text-obsidian-900 font-bold text-sm">
+          <div className={`flex items-center gap-3 p-2 rounded-xl hover:bg-slate-800/5 cursor-pointer transition-colors ${!sidebarOpen && 'justify-center'}`}>
+            <div className="w-8 h-8 flex-shrink-0 bg-gradient-to-br from-primary-600 to-secondary-500 rounded-full flex items-center justify-center text-slate-900 font-bold text-sm">
               {user?.name?.[0]?.toUpperCase() || 'U'}
             </div>
             {sidebarOpen && (
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-semibold text-white truncate">{user?.name}</p>
-                <p className="text-xs text-slate-500 truncate">{user?.email}</p>
+                <p className="text-xs text-slate-400 truncate">{user?.email}</p>
               </div>
             )}
             {sidebarOpen && (
-              <button onClick={handleLogout} className="text-slate-500 hover:text-red-400 transition-colors" title="Logout">
+              <button onClick={handleLogout} className="text-slate-400 hover:text-red-400 transition-colors" title="Logout">
                 <RiLogoutBoxLine size={16} />
               </button>
             )}

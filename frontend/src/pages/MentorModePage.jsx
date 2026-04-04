@@ -175,7 +175,7 @@ function analyzeUser(answers) {
   actions.push("Join a community — Discord/Reddit/meetups. Don't code alone.");
   if(isAI||isFS||isDevOps)actions.push('Follow roadmap.sh strictly. No random YouTube rabbit holes.');
 
-  return { humanReadinessScore, verdict, verdictColor, verdictEmoji, effortScore, consistencyScore, projectScore, disciplineScore:disc, contradictions, betterPath, betterReason, actions, careerGoal:careerGoal||'Unknown', experienceLevel:experienceLevel||'unknown', effortScore };
+  return { humanReadinessScore, verdict, verdictColor, verdictEmoji, effortScore, consistencyScore, projectScore, disciplineScore:disc, contradictions, betterPath, betterReason, actions, careerGoal:careerGoal||'Unknown', experienceLevel:experienceLevel||'unknown' };
 }
 
 // ── INPUT VALIDATOR ──────────────────────────────────────────────────────────
@@ -252,14 +252,14 @@ function quickMentorReply(qId, answer, consistency) {
 
 // ── SUB COMPONENTS ────────────────────────────────────────────────────────────
 function ScoreBar({label,value,color}){
-  const c={gold:'from-gold-500 to-orange-500',red:'from-red-500 to-rose-600',emerald:'from-emerald-500 to-teal-500',blue:'from-blue-500 to-cyan-500',purple:'from-purple-500 to-pink-500',amber:'from-amber-400 to-orange-500'};
-  return(<div><div className="flex justify-between text-xs mb-1.5"><span className="text-slate-400">{label}</span><span className="text-white font-bold">{value}/100</span></div><div className="h-2 bg-obsidian-600 rounded-full overflow-hidden"><div style={{width:`${value}%`,transition:'width 1.2s ease-out'}} className={`h-full bg-gradient-to-r ${c[color]||c.gold} rounded-full`}/></div></div>);
+  const c={gold:'from-primary-500 to-secondary-500',red:'from-red-500 to-rose-600',emerald:'from-emerald-500 to-teal-500',blue:'from-blue-500 to-cyan-500',purple:'from-purple-500 to-pink-500',amber:'from-amber-400 to-secondary-500'};
+  return(<div><div className="flex justify-between text-xs mb-1.5"><span className="text-slate-500">{label}</span><span className="text-white font-bold">{value}/100</span></div><div className="h-2 bg-slate-900/40/10 rounded-full overflow-hidden"><div style={{width:`${value}%`,transition:'width 1.2s ease-out'}} className={`h-full bg-gradient-to-r ${c[color]||c.gold} rounded-full`}/></div></div>);
 }
 
 function ReadinessRing({score}){
   const r=54,circ=2*Math.PI*r,offset=circ-(score/100)*circ;
   const col=score>=70?'#10b981':score>=45?'#f59e0b':'#ef4444';
-  return(<div className="relative flex items-center justify-center"style={{width:140,height:140}}><svg width={140}height={140}className="-rotate-90"><circle cx={70}cy={70}r={r}fill="none"stroke="#1a1a26"strokeWidth={10}/><circle cx={70}cy={70}r={r}fill="none"stroke={col}strokeWidth={10}strokeDasharray={circ}strokeDashoffset={offset}strokeLinecap="round"style={{transition:'stroke-dashoffset 1.5s ease-out'}}/></svg><div className="absolute text-center"><p className="text-3xl font-black"style={{color:col}}>{score}</p><p className="text-xs text-slate-400">/ 100</p></div></div>);
+  return(<div className="relative flex items-center justify-center"style={{width:140,height:140}}><svg width={140}height={140}className="-rotate-90"><circle cx={70}cy={70}r={r}fill="none"stroke="#1a1a26"strokeWidth={10}/><circle cx={70}cy={70}r={r}fill="none"stroke={col}strokeWidth={10}strokeDasharray={circ}strokeDashoffset={offset}strokeLinecap="round"style={{transition:'stroke-dashoffset 1.5s ease-out'}}/></svg><div className="absolute text-center"><p className="text-3xl font-black"style={{color:col}}>{score}</p><p className="text-xs text-slate-500">/ 100</p></div></div>);
 }
 
 function MentorBubble({text,animate,emotion}){
@@ -274,8 +274,8 @@ function MentorBubble({text,animate,emotion}){
           <p className="text-xs text-purple-400 font-bold">MENTOR</p>
           {emotionIcon&&<span className="text-xs">{emotionIcon}</span>}
         </div>
-        <div className="bg-obsidian-700 border border-purple-500/20 rounded-2xl rounded-tl-sm px-4 py-3">
-          <p className="text-slate-100 text-sm leading-relaxed whitespace-pre-line">{text}</p>
+        <div className="bg-slate-900/40/5 border border-purple-500/20 rounded-2xl rounded-tl-sm px-4 py-3">
+          <p className="text-white text-sm leading-relaxed whitespace-pre-line">{text}</p>
         </div>
       </div>
     </div>
@@ -285,13 +285,13 @@ function MentorBubble({text,animate,emotion}){
 function UserBubble({text}){
   return(
     <div className="flex items-start gap-3 flex-row-reverse slide-in-right">
-      <div className="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-gold-500 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg shadow-gold-500/20">
-        <RiEmotionLine className="text-obsidian-900 text-base"/>
+      <div className="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-2xl flex items-center justify-center shadow-lg shadow-primary-500/20">
+        <RiEmotionLine className="text-white text-base"/>
       </div>
       <div className="max-w-xl">
-        <p className="text-xs text-gold-400 font-bold mb-1 text-right">YOU</p>
-        <div className="bg-gold-500/10 border border-gold-500/20 rounded-2xl rounded-tr-sm px-4 py-3">
-          <p className="text-slate-100 text-sm leading-relaxed">{text}</p>
+        <p className="text-xs text-primary-400 font-bold mb-1 text-right">YOU</p>
+        <div className="bg-primary-500/10 border border-primary-500/20 rounded-2xl rounded-tr-sm px-4 py-3">
+          <p className="text-white text-sm leading-relaxed">{text}</p>
         </div>
       </div>
     </div>
@@ -304,10 +304,10 @@ function TypingBubble(){
       <div className="w-9 h-9 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl flex items-center justify-center">
         <RiPsychotherapyLine className="text-white text-base"/>
       </div>
-      <div className="bg-obsidian-700 border border-purple-500/20 rounded-2xl rounded-tl-sm px-4 py-3">
+      <div className="bg-slate-900/40/5 border border-purple-500/20 rounded-2xl rounded-tl-sm px-4 py-3">
         <div className="flex gap-1 items-center">
           {[0,1,2].map(i=><div key={i} className="w-2 h-2 bg-purple-400 rounded-full animate-bounce"style={{animationDelay:`${i*0.15}s`}}/>)}
-          <span className="text-xs text-slate-500 ml-2">Mentor is thinking…</span>
+          <span className="text-xs text-slate-400 ml-2">Mentor is thinking…</span>
         </div>
       </div>
     </div>
@@ -324,13 +324,13 @@ function AccountabilityTracker({actions}){
   const doneCount=Object.values(checked).filter(Boolean).length;
   const handleLog=()=>{if(!isToday){const n=streak+1;setStreak(n);setLastDate(todayStr);try{localStorage.setItem('mentor_streak',String(n));localStorage.setItem('mentor_last_date',todayStr);}catch{}}};
   return(
-    <div className="glass-card p-6 border border-purple-500/20">
+    <div className="neon-glass-card p-6 border border-purple-500/20">
       <div className="flex items-center justify-between mb-5">
-        <div className="flex items-center gap-3"><div className="w-9 h-9 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center"><RiTimeLine className="text-white text-base"/></div><div><h3 className="font-bold text-white">Daily Accountability</h3><p className="text-xs text-slate-500">Your mentor is watching 👀</p></div></div>
-        <div className="text-center"><p className="text-2xl font-black text-orange-400">{streak}</p><p className="text-xs text-slate-500">Day Streak 🔥</p></div>
+        <div className="flex items-center gap-3"><div className="w-9 h-9 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center"><RiTimeLine className="text-white text-base"/></div><div><h3 className="font-bold text-white">Daily Accountability</h3><p className="text-xs text-slate-400">Your mentor is watching 👀</p></div></div>
+        <div className="text-center"><p className="text-2xl font-black text-secondary-400">{streak}</p><p className="text-xs text-slate-400">Day Streak 🔥</p></div>
       </div>
-      <div className="space-y-2 mb-4">{actions.map((a,i)=>(<button key={i}onClick={()=>toggle(i)}className={`w-full flex items-start gap-3 p-3 rounded-xl border transition-all duration-200 text-left ${checked[i]?'bg-emerald-500/10 border-emerald-500/30':'bg-obsidian-700 border-white/5 hover:border-white/10'}`}><div className={`w-5 h-5 rounded-full flex-shrink-0 mt-0.5 border-2 flex items-center justify-center transition-all ${checked[i]?'bg-emerald-500 border-emerald-500':'border-slate-600'}`}>{checked[i]&&<RiCheckboxCircleLine className="text-white text-xs"/>}</div><span className={`text-sm ${checked[i]?'text-emerald-400 line-through opacity-70':'text-slate-300'}`}>{a}</span></button>))}</div>
-      <div className="mb-4"><div className="flex justify-between text-xs mb-1"><span className="text-slate-400">Today's Progress</span><span className="text-gold-400 font-bold">{doneCount}/{actions.length}</span></div><div className="h-2 bg-obsidian-600 rounded-full overflow-hidden"><div style={{width:`${(doneCount/actions.length)*100}%`}}className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-700"/></div></div>
+      <div className="space-y-2 mb-4">{actions.map((a,i)=>(<button key={i}onClick={()=>toggle(i)}className={`w-full flex items-start gap-3 p-3 rounded-xl border transition-all duration-200 text-left ${checked[i]?'bg-emerald-500/10 border-emerald-500/30':'bg-slate-900/40/5 border-white/5 hover:border-white/10'}`}><div className={`w-5 h-5 rounded-full flex-shrink-0 mt-0.5 border-2 flex items-center justify-center transition-all ${checked[i]?'bg-emerald-500 border-emerald-500':'border-slate-600'}`}>{checked[i]&&<RiCheckboxCircleLine className="text-white text-xs"/>}</div><span className={`text-sm ${checked[i]?'text-emerald-400 line-through opacity-70':'text-slate-300'}`}>{a}</span></button>))}</div>
+      <div className="mb-4"><div className="flex justify-between text-xs mb-1"><span className="text-slate-500">Today's Progress</span><span className="text-primary-400 font-bold">{doneCount}/{actions.length}</span></div><div className="h-2 bg-slate-900/40/10 rounded-full overflow-hidden"><div style={{width:`${(doneCount/actions.length)*100}%`}}className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-700"/></div></div>
       <button onClick={handleLog}disabled={isToday}className={`w-full py-3 rounded-xl font-bold text-sm transition-all duration-200 ${isToday?'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 cursor-default':'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-500 hover:to-blue-500 shadow-lg'}`}>{isToday?`✅ Logged today — ${streak} day streak`:"🔥 Log Today's Session"}</button>
     </div>
   );
@@ -377,7 +377,7 @@ function FreeChatPanel({context}){
       {/* Quick questions */}
       {msgs.length<3&&(
         <div className="px-4 pb-2">
-          <p className="text-xs text-slate-500 mb-2">Quick questions:</p>
+          <p className="text-xs text-slate-400 mb-2">Quick questions:</p>
           <div className="flex flex-wrap gap-2">
             {quickQs.map(q=>(
               <button key={q}onClick={()=>{setInput(q);setTimeout(()=>send(),50);}}
@@ -389,13 +389,13 @@ function FreeChatPanel({context}){
         </div>
       )}
 
-      <div className="p-4 border-t border-white/5 bg-obsidian-800">
+      <div className="p-4 border-t border-white/5 bg-slate-900/40">
         <div className="flex gap-3 items-end">
           <textarea
             value={input}onChange={e=>setInput(e.target.value)}onKeyDown={handleKey}
             placeholder="Ask anything — career, doubts, fears, motivation…"
             rows={2}
-            className="flex-1 bg-obsidian-700 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 resize-none text-sm"
+            className="flex-1 bg-slate-900/40/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 resize-none text-sm"
           />
           <button onClick={send}disabled={!input.trim()}
             className="w-11 h-11 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center disabled:opacity-40 hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg">
@@ -529,7 +529,7 @@ export default function MentorModePage(){
         <h1 className="text-4xl font-black text-white mb-3 leading-tight">
           Meet Your <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">Strict Mentor</span>
         </h1>
-        <p className="text-slate-400 text-base leading-relaxed mb-6 max-w-lg mx-auto">
+        <p className="text-slate-500 text-base leading-relaxed mb-6 max-w-lg mx-auto">
           A <strong className="text-white">Human Decision System</strong> that reads your emotions, challenges your thinking, detects unrealistic goals, and lets you ask <strong className="text-purple-300">unlimited questions</strong> — like a real mentor who actually cares.
         </p>
         <div className="flex flex-wrap gap-3 justify-center mb-6">
@@ -541,7 +541,7 @@ export default function MentorModePage(){
             {icon:RiMedalLine,text:'Action Plan',color:'text-emerald-400'},
             {icon:RiTimeLine,text:'Unlimited Q&A',color:'text-purple-400'},
           ].map(({icon:Icon,text,color})=>(
-            <div key={text} className="flex items-center gap-2 px-3 py-1.5 bg-obsidian-700 rounded-xl border border-white/5 text-xs text-slate-300">
+            <div key={text} className="flex items-center gap-2 px-3 py-1.5 bg-slate-900/40/5 rounded-xl border border-white/5 text-xs text-slate-300">
               <Icon className={`${color} text-sm`}/>{text}
             </div>
           ))}
@@ -551,7 +551,7 @@ export default function MentorModePage(){
             <RiHeartLine className="text-pink-400"/>
             <p className="text-pink-400 font-bold text-sm">This mentor understands how you feel.</p>
           </div>
-          <p className="text-slate-400 text-xs leading-relaxed">Whether you're scared, frustrated, hopeless, or confused — the mentor will acknowledge your emotion first, then give you the honest truth. After the assessment, ask unlimited questions anytime.</p>
+          <p className="text-slate-500 text-xs leading-relaxed">Whether you're scared, frustrated, hopeless, or confused — the mentor will acknowledge your emotion first, then give you the honest truth. After the assessment, ask unlimited questions anytime.</p>
         </div>
         <button id="start-mentor-session" onClick={startSession}
           className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-bold px-8 py-4 rounded-2xl text-base hover:from-purple-500 hover:to-blue-500 transition-all duration-200 hover:shadow-xl hover:shadow-purple-500/30 active:scale-95">
@@ -569,21 +569,21 @@ export default function MentorModePage(){
     return(
       <div className="flex flex-col h-screen max-h-screen">
         {/* Top bar */}
-        <div className="p-4 border-b border-white/5 bg-obsidian-800 flex items-center justify-between flex-shrink-0">
+        <div className="p-4 border-b border-white/5 bg-slate-900/40 flex items-center justify-between flex-shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center"><RiBrainLine className="text-white"/></div>
-            <div><p className="text-white font-bold text-sm">Mentor Mode</p><p className="text-xs text-slate-500">Assessment complete — ask unlimited questions below</p></div>
+            <div><p className="text-white font-bold text-sm">Mentor Mode</p><p className="text-xs text-slate-400">Assessment complete — ask unlimited questions below</p></div>
           </div>
-          <button onClick={reset} className="flex items-center gap-2 text-slate-400 hover:text-gold-400 transition-colors text-sm border border-white/10 hover:border-gold-500/30 px-3 py-2 rounded-xl">
+          <button onClick={reset} className="flex items-center gap-2 text-slate-500 hover:text-primary-400 transition-colors text-sm border border-white/10 hover:border-primary-500/30 px-3 py-2 rounded-xl">
             <RiRefreshLine/>Start Over
           </button>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-white/5 bg-obsidian-800 flex-shrink-0">
+        <div className="flex border-b border-white/5 bg-slate-900/40 flex-shrink-0">
           {[{id:'result',label:'📊 Reality Check'},{id:'chat',label:'💬 Ask Mentor (Unlimited)'}].map(t=>(
             <button key={t.id} onClick={()=>setActiveTab(t.id)}
-              className={`flex-1 py-3 text-sm font-semibold transition-all ${activeTab===t.id?'text-purple-400 border-b-2 border-purple-500 bg-purple-500/5':'text-slate-500 hover:text-slate-300'}`}>
+              className={`flex-1 py-3 text-sm font-semibold transition-all ${activeTab===t.id?'text-purple-400 border-b-2 border-purple-500 bg-purple-500/5':'text-slate-400 hover:text-slate-300'}`}>
               {t.label}
             </button>
           ))}
@@ -594,24 +594,24 @@ export default function MentorModePage(){
           {activeTab==='result'?(
             <div className="p-6 max-w-5xl mx-auto space-y-5 animate-fade-in">
               {/* Reality Check Card */}
-              <div className={`glass-card p-6 border ${vs.border} ${vs.bg}`}>
+              <div className={`neon-glass-card p-6 border ${vs.border} ${vs.bg}`}>
                 <div className="flex flex-col md:flex-row items-center gap-6">
                   <ReadinessRing score={humanReadinessScore}/>
                   <div className="flex-1 text-center md:text-left">
-                    <p className="text-xs text-slate-500 font-bold uppercase tracking-wider mb-3">YOUR REALITY CHECK</p>
+                    <p className="text-xs text-slate-400 font-bold uppercase tracking-wider mb-3">YOUR REALITY CHECK</p>
                     <div className="space-y-2 mb-4 text-sm">
-                      <div className="flex items-center gap-2"><span className="text-slate-500 w-32">You want:</span><span className="text-white font-bold">{careerGoal}</span></div>
-                      <div className="flex items-center gap-2"><span className="text-slate-500 w-32">Current level:</span><span className="text-white font-bold capitalize">{experienceLevel}</span></div>
-                      <div className="flex items-center gap-2"><span className="text-slate-500 w-32">Effort level:</span><span className={`font-bold ${effortScore>=70?'text-emerald-400':effortScore>=40?'text-amber-400':'text-red-400'}`}>{effortScore>=70?'High':effortScore>=40?'Medium':'Low'}</span></div>
+                      <div className="flex items-center gap-2"><span className="text-slate-400 w-32">You want:</span><span className="text-white font-bold">{careerGoal}</span></div>
+                      <div className="flex items-center gap-2"><span className="text-slate-400 w-32">Current level:</span><span className="text-white font-bold capitalize">{experienceLevel}</span></div>
+                      <div className="flex items-center gap-2"><span className="text-slate-400 w-32">Effort level:</span><span className={`font-bold ${effortScore>=70?'text-emerald-400':effortScore>=40?'text-amber-400':'text-red-400'}`}>{effortScore>=70?'High':effortScore>=40?'Medium':'Low'}</span></div>
                     </div>
                     <div className={`inline-block px-5 py-2 rounded-xl border ${vs.border} ${vs.bg} mb-3`}>
                       <p className={`text-xl font-black ${vs.text}`}>{verdictEmoji} {verdict}</p>
                     </div>
                     {betterPath&&(
-                      <div className="mt-3 p-3 bg-gold-500/10 border border-gold-500/20 rounded-xl">
-                        <p className="text-xs text-gold-400 font-bold uppercase tracking-wider mb-1">MENTOR SUGGESTS</p>
+                      <div className="mt-3 p-3 bg-primary-500/10 border border-primary-500/20 rounded-xl">
+                        <p className="text-xs text-primary-400 font-bold uppercase tracking-wider mb-1">MENTOR SUGGESTS</p>
                         <p className="text-white font-bold">{betterPath}</p>
-                        <p className="text-slate-400 text-xs mt-1 leading-relaxed">{betterReason}</p>
+                        <p className="text-slate-500 text-xs mt-1 leading-relaxed">{betterReason}</p>
                       </div>
                     )}
                   </div>
@@ -620,8 +620,8 @@ export default function MentorModePage(){
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {/* Score Breakdown */}
-                <div className="glass-card p-6">
-                  <div className="flex items-center gap-2 mb-5"><RiStarLine className="text-gold-400 text-xl"/><h3 className="font-bold text-white">Human Readiness Score</h3></div>
+                <div className="neon-glass-card p-6">
+                  <div className="flex items-center gap-2 mb-5"><RiStarLine className="text-primary-400 text-xl"/><h3 className="font-bold text-white">Human Readiness Score</h3></div>
                   <div className="space-y-3">
                     <ScoreBar label="Study Effort" value={effortScore} color="gold"/>
                     <ScoreBar label="Consistency" value={consistencyScore} color="purple"/>
@@ -629,21 +629,21 @@ export default function MentorModePage(){
                     <ScoreBar label="Discipline" value={disciplineScore} color={disciplineScore>=60?'emerald':'red'}/>
                   </div>
                   <div className="mt-5 pt-4 border-t border-white/5 flex justify-between items-center">
-                    <span className="text-sm text-slate-400">Overall</span>
+                    <span className="text-sm text-slate-500">Overall</span>
                     <span className={`text-2xl font-black ${humanReadinessScore>=70?'text-emerald-400':humanReadinessScore>=45?'text-amber-400':'text-red-400'}`}>{humanReadinessScore}/100</span>
                   </div>
                 </div>
 
                 {/* Contradictions */}
-                <div className="glass-card p-6">
+                <div className="neon-glass-card p-6">
                   <div className="flex items-center gap-2 mb-5"><RiThunderstormsLine className="text-red-400 text-xl"/><h3 className="font-bold text-white">Contradiction Detector</h3></div>
                   {contradictions.length===0?(
-                    <div className="text-center py-6"><RiCheckboxCircleLine className="text-4xl text-emerald-400 mx-auto mb-2"/><p className="text-emerald-400 font-bold">No contradictions found.</p><p className="text-slate-500 text-xs mt-1">Your goals align with your actions.</p></div>
+                    <div className="text-center py-6"><RiCheckboxCircleLine className="text-4xl text-emerald-400 mx-auto mb-2"/><p className="text-emerald-400 font-bold">No contradictions found.</p><p className="text-slate-400 text-xs mt-1">Your goals align with your actions.</p></div>
                   ):(
                     <div className="space-y-4">{contradictions.map((c,i)=>(
                       <div key={i} className="p-4 bg-red-500/5 border border-red-500/20 rounded-xl">
                         <div className="flex items-start gap-2 mb-2"><RiAlertLine className="text-red-400 flex-shrink-0 mt-0.5"/><p className="text-red-300 text-sm font-semibold">{c.conflict}</p></div>
-                        <p className="text-slate-400 text-xs leading-relaxed pl-5">{c.reality}</p>
+                        <p className="text-slate-500 text-xs leading-relaxed pl-5">{c.reality}</p>
                       </div>
                     ))}</div>
                   )}
@@ -651,29 +651,29 @@ export default function MentorModePage(){
 
                 {/* If insisting */}
                 {verdict!=='REALISTIC'&&betterPath&&(
-                  <div className="glass-card p-6">
+                  <div className="neon-glass-card p-6">
                     <div className="flex items-center gap-2 mb-5"><RiShieldLine className="text-amber-400 text-xl"/><h3 className="font-bold text-white">If You Still Insist</h3></div>
                     <div className="space-y-3 mb-5">
                       {['Burnout risk within 2–4 months without fixing study patterns.','2–3x longer than average without daily consistency.','High chance of quitting when material gets hard.','Applications ignored without real projects, regardless of certificates.'].map((w,i)=>(
-                        <div key={i} className="flex items-start gap-2 text-sm text-slate-400"><span className="text-amber-400 flex-shrink-0">⚠</span>{w}</div>
+                        <div key={i} className="flex items-start gap-2 text-sm text-slate-500"><span className="text-amber-400 flex-shrink-0">⚠</span>{w}</div>
                       ))}
                     </div>
-                    <button onClick={()=>setUserInsists(true)} className="w-full py-2.5 text-sm text-slate-400 border border-white/5 hover:border-amber-500/30 hover:text-amber-400 rounded-xl transition-all">
+                    <button onClick={()=>setUserInsists(true)} className="w-full py-2.5 text-sm text-slate-500 border border-white/5 hover:border-amber-500/30 hover:text-amber-400 rounded-xl transition-all">
                       I understand, but I still want {careerGoal}
                     </button>
                     {userInsists&&(
                       <div className="mt-4 p-4 bg-amber-500/5 border border-amber-500/30 rounded-xl slide-in-left">
                         <p className="text-amber-400 font-bold text-sm mb-1">Stubborn. Good — I can work with that.</p>
-                        <p className="text-slate-400 text-xs leading-relaxed">Then prove it. Wake up tomorrow, code 3+ hours. Every day. In 6 months, we'll see who was right.</p>
+                        <p className="text-slate-500 text-xs leading-relaxed">Then prove it. Wake up tomorrow, code 3+ hours. Every day. In 6 months, we'll see who was right.</p>
                       </div>
                     )}
                   </div>
                 )}
 
                 {/* Action Plan */}
-                <div className="glass-card p-6">
+                <div className="neon-glass-card p-6">
                   <div className="flex items-center gap-2 mb-5"><RiRocketLine className="text-blue-400 text-xl"/><h3 className="font-bold text-white">Mandatory Action Plan</h3></div>
-                  <p className="text-xs text-slate-500 mb-4 italic">"You must do these. Not 'try'. Do."</p>
+                  <p className="text-xs text-slate-400 mb-4 italic">"You must do these. Not 'try'. Do."</p>
                   <div className="space-y-3">{actions.map((a,i)=>(
                     <div key={i} className="flex items-start gap-3 p-3 bg-blue-500/5 border border-blue-500/15 rounded-xl">
                       <span className="w-5 h-5 flex-shrink-0 bg-blue-500/20 text-blue-400 text-xs rounded-full flex items-center justify-center font-bold mt-0.5">{i+1}</span>
@@ -686,11 +686,11 @@ export default function MentorModePage(){
               <AccountabilityTracker actions={actions}/>
 
               {/* CTA to chat */}
-              <div className="glass-card p-5 bg-gradient-to-r from-purple-900/40 to-blue-900/30 border border-purple-500/20 flex items-center gap-4">
+              <div className="neon-glass-card p-5 bg-gradient-to-r from-purple-900/40 to-blue-900/30 border border-purple-500/20 flex items-center gap-4">
                 <RiPsychotherapyLine className="text-purple-400 text-3xl flex-shrink-0"/>
                 <div className="flex-1">
                   <p className="text-white font-bold">Have more questions?</p>
-                  <p className="text-slate-400 text-sm">Switch to the <strong className="text-purple-300">Ask Mentor</strong> tab — ask anything, unlimited. Your mentor is here anytime.</p>
+                  <p className="text-slate-500 text-sm">Switch to the <strong className="text-purple-300">Ask Mentor</strong> tab — ask anything, unlimited. Your mentor is here anytime.</p>
                 </div>
                 <button onClick={()=>setActiveTab('chat')} className="flex-shrink-0 px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-sm font-bold rounded-xl hover:from-purple-500 hover:to-blue-500 transition-all">
                   Chat Now <RiArrowRightLine className="inline ml-1"/>
@@ -710,31 +710,31 @@ export default function MentorModePage(){
   const progress=(currentQ/QUESTIONS.length)*100;
   return(
     <div className="flex flex-col h-screen max-h-screen">
-      <div className="p-4 border-b border-white/5 bg-obsidian-800 flex items-center gap-4 flex-shrink-0">
+      <div className="p-4 border-b border-white/5 bg-slate-900/40 flex items-center gap-4 flex-shrink-0">
         <div className="w-10 h-10 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-purple-500/20">
           <RiPsychotherapyLine className="text-white text-lg"/>
         </div>
         <div className="flex-1">
           <p className="text-white font-bold text-sm">Mentor Session</p>
-          <p className="text-xs text-slate-500">Emotional Intelligence Active</p>
+          <p className="text-xs text-slate-400">Emotional Intelligence Active</p>
         </div>
         <div className="flex items-center gap-3">
-          <div className="w-32 h-1.5 bg-obsidian-600 rounded-full overflow-hidden hidden sm:block">
+          <div className="w-32 h-1.5 bg-slate-900/40/10 rounded-full overflow-hidden hidden sm:block">
             <div style={{width:`${progress}%`}} className="h-full bg-gradient-to-r from-purple-600 to-blue-500 rounded-full transition-all duration-500"/>
           </div>
-          <span className="text-xs text-slate-500">{Math.round(progress)}%</span>
-          <button onClick={reset} className="text-slate-500 hover:text-red-400 transition-colors ml-2"><RiCloseLine size={18}/></button>
+          <span className="text-xs text-slate-400">{Math.round(progress)}%</span>
+          <button onClick={reset} className="text-slate-400 hover:text-red-400 transition-colors ml-2"><RiCloseLine size={18}/></button>
         </div>
       </div>
 
-      <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-obsidian-900">
+      <div className="flex-1 overflow-y-auto p-6 space-y-5 bg-slate-900/60">
         {chatLog.map((m,i)=>m.type==='mentor'?<MentorBubble key={i}text={m.text}animate={i>=chatLog.length-2}emotion={m.emotion}/>:<UserBubble key={i}text={m.text}/>)}
         {isTyping&&<TypingBubble/>}
         <div ref={chatEndRef}/>
       </div>
 
       {!isTyping&&currentQ<QUESTIONS.length&&(
-        <div className="p-4 border-t border-white/5 bg-obsidian-800 flex-shrink-0">
+        <div className="p-4 border-t border-white/5 bg-slate-900/40 flex-shrink-0">
           {q.type==='choice'?(
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {q.options.map(opt=>(
@@ -747,7 +747,7 @@ export default function MentorModePage(){
           ):q.type==='textarea'?(
             <div className="flex gap-3 items-end">
               <textarea value={inputVal} onChange={e=>setInputVal(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&!e.shiftKey&&inputVal.trim()){e.preventDefault();submitAnswer();}}} placeholder={q.placeholder} rows={2}
-                className="flex-1 bg-obsidian-700 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 resize-none text-sm"/>
+                className="flex-1 bg-slate-900/40/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 resize-none text-sm"/>
               <button onClick={()=>submitAnswer()} disabled={!inputVal.trim()}
                 className="w-11 h-11 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center disabled:opacity-40 hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg">
                 <RiSendPlaneLine className="text-white text-base"/>
@@ -756,7 +756,7 @@ export default function MentorModePage(){
           ):(
             <div className="flex gap-3 items-center">
               <input type="text" value={inputVal} onChange={e=>setInputVal(e.target.value)} onKeyDown={e=>{if(e.key==='Enter'&&inputVal.trim())submitAnswer();}} placeholder={q.placeholder}
-                className="flex-1 bg-obsidian-700 border border-white/10 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 text-sm"/>
+                className="flex-1 bg-slate-900/40/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-purple-500/50 transition-all duration-200 text-sm"/>
               <button onClick={()=>submitAnswer()} disabled={!inputVal.trim()}
                 className="w-11 h-11 flex-shrink-0 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center disabled:opacity-40 hover:from-purple-500 hover:to-blue-500 transition-all shadow-lg">
                 <RiSendPlaneLine className="text-white text-base"/>

@@ -23,7 +23,7 @@ export default function ScoreRing({ score = 0, size = 100, strokeWidth = 8 }) {
       </svg>
       <div className="absolute text-center">
         <p className="font-black text-white" style={{ fontSize: size / 5 }}>{score}</p>
-        <p className="text-slate-400" style={{ fontSize: size / 9 }}>/ 100</p>
+        <p className="text-slate-500" style={{ fontSize: size / 9 }}>/ 100</p>
       </div>
     </div>
   );

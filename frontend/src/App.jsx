@@ -13,14 +13,15 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import MentorModePage from './pages/MentorModePage.jsx';
 import SmartMockTestPage from './pages/SmartMockTestPage.jsx';
 import Layout from './components/Layout.jsx';
+import LandingPage from './pages/LandingPage.jsx';
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
   if (loading) return (
-    <div className="min-h-screen bg-obsidian-900 flex items-center justify-center">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center">
       <div className="text-center">
-        <div className="w-16 h-16 border-4 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gold-400 font-semibold">Loading DevGap AI...</p>
+        <div className="w-16 h-16 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-primary-400 font-semibold animate-pulse">Loading DevGap AI...</p>
       </div>
     </div>
   );
@@ -44,7 +45,7 @@ function App() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/" element={<Navigate to="/dashboard" />} />
+        <Route path="/" element={<PublicRoute><LandingPage /></PublicRoute>} />
         <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
         <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
         <Route path="/" element={<PrivateRoute><Layout /></PrivateRoute>}>

@@ -33,30 +33,30 @@ export default function GithubPage() {
     <div className="p-6 max-w-5xl mx-auto animate-fade-in">
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <div className="w-10 h-10 bg-gradient-to-br from-gold-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-gold-500/20">
-            <RiGithubLine className="text-xl text-obsidian-900" />
+          <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/20">
+            <RiGithubLine className="text-xl text-white" />
           </div>
           <div>
             <h1 className="text-2xl font-black text-white">GitHub Analyzer</h1>
-            <p className="text-slate-400 text-sm">Analyze repos, languages & portfolio strength</p>
+            <p className="text-slate-500 text-sm">Analyze repos, languages & portfolio strength</p>
           </div>
         </div>
       </div>
 
       {/* Search */}
-      <form onSubmit={handleAnalyze} className="glass-card p-6 mb-6">
-        <label className="label-gold">GitHub Username</label>
+      <form onSubmit={handleAnalyze} className="neon-glass-card p-6 mb-6">
+        <label className="label-primary">GitHub Username</label>
         <div className="flex gap-3">
           <div className="flex-1 relative">
-            <RiGithubLine className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" />
+            <RiGithubLine className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" />
             <input
               type="text" value={username} onChange={e => setUsername(e.target.value)}
               placeholder="e.g. torvalds, gaearon, sindresorhus"
               className="input-dark pl-10"
             />
           </div>
-          <button type="submit" disabled={loading} className="btn-gold flex items-center gap-2 px-6">
-            {loading ? <div className="w-5 h-5 border-2 border-obsidian-900/50 border-t-obsidian-900 rounded-full animate-spin" /> : <><RiSearchLine /> Analyze</>}
+          <button type="submit" disabled={loading} className="btn-primary flex items-center gap-2 px-6">
+            {loading ? <div className="w-5 h-5 border-2 border-slate-900/50 border-t-slate-900 rounded-full animate-spin" /> : <><RiSearchLine /> Analyze</>}
           </button>
         </div>
         {error && <p className="text-red-400 text-sm mt-3">{error}</p>}
@@ -65,11 +65,11 @@ export default function GithubPage() {
       {data && (
         <div className="space-y-5 animate-slide-up">
           {/* Profile Header */}
-          <div className="glass-card p-6 flex flex-col sm:flex-row items-center gap-6">
-            <img src={data.avatarUrl} alt="avatar" className="w-20 h-20 rounded-2xl border-2 border-gold-500/30 shadow-xl" />
+          <div className="neon-glass-card p-6 flex flex-col sm:flex-row items-center gap-6">
+            <img src={data.avatarUrl} alt="avatar" className="w-20 h-20 rounded-2xl border-2 border-primary-500/30 shadow-xl" />
             <div className="flex-1 text-center sm:text-left">
               <h2 className="text-2xl font-black text-white">@{data.username}</h2>
-              <p className="text-slate-400 text-sm mt-1">{data.bio || 'No bio set'}</p>
+              <p className="text-slate-500 text-sm mt-1">{data.bio || 'No bio set'}</p>
               <div className="flex flex-wrap justify-center sm:justify-start gap-4 mt-3">
                 {[
                   { label: 'Repos', value: data.publicRepos, icon: '📦' },
@@ -79,7 +79,7 @@ export default function GithubPage() {
                 ].map(({ label, value, icon }) => (
                   <div key={label} className="text-center">
                     <p className="text-white font-black text-xl">{value}</p>
-                    <p className="text-slate-400 text-xs">{icon} {label}</p>
+                    <p className="text-slate-500 text-xs">{icon} {label}</p>
                   </div>
                 ))}
               </div>
@@ -101,7 +101,7 @@ export default function GithubPage() {
                       <span className="text-white font-black text-sm">{value}</span>
                     </div>
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">{label}</p>
+                  <p className="text-xs text-slate-500 mt-1">{label}</p>
                 </div>
               ))}
             </div>
@@ -109,9 +109,9 @@ export default function GithubPage() {
 
           {/* NEW: Developer Analysis Verdict */}
           {data.verdict && (
-            <div className="glass-card p-6 bg-gradient-to-r from-obsidian-800 to-obsidian-900 border-l-4 border-l-gold-500">
+            <div className="neon-glass-card p-6 bg-gradient-to-r from-slate-800 to-slate-900 border-l-4 border-l-primary-500">
               <h3 className="text-xl font-black text-white flex items-center gap-2 mb-2">
-                <RiCheckLine className="text-gold-500" /> Real Developer Verdict
+                <RiCheckLine className="text-primary-500" /> Real Developer Verdict
               </h3>
               <p className="text-slate-300 font-medium leading-relaxed">{data.verdict}</p>
             </div>
@@ -119,7 +119,7 @@ export default function GithubPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Languages */}
-            <div className="glass-card p-6">
+            <div className="neon-glass-card p-6">
               <h3 className="section-title mb-4">Top Languages</h3>
               <div className="space-y-3">
                 {data.languages && Object.entries(data.languages).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([lang, count]) => {
@@ -132,9 +132,9 @@ export default function GithubPage() {
                           <span className="w-3 h-3 rounded-full" style={{ background: langColors[lang] || '#94a3b8' }} />
                           <span className="text-slate-300">{lang}</span>
                         </span>
-                        <span className="text-slate-400">{pct}% ({count} repos)</span>
+                        <span className="text-slate-500">{pct}% ({count} repos)</span>
                       </div>
-                      <div className="h-1.5 bg-obsidian-600 rounded-full overflow-hidden">
+                      <div className="h-1.5 bg-slate-900/40/10 rounded-full overflow-hidden">
                         <div style={{ width: `${pct}%`, background: langColors[lang] || '#94a3b8' }} className="h-full rounded-full transition-all duration-1000" />
                       </div>
                     </div>
@@ -145,7 +145,7 @@ export default function GithubPage() {
 
             {/* Extracted Skills */}
             {data.skills && (
-              <div className="glass-card p-6">
+              <div className="neon-glass-card p-6">
                 <h3 className="section-title mb-4">Skill Extraction Analysis</h3>
                 <div className="space-y-4">
                   <div>
@@ -153,7 +153,7 @@ export default function GithubPage() {
                     <div className="flex flex-wrap gap-2">
                       {data.skills.frontend?.length > 0 ? data.skills.frontend.map(s => (
                         <span key={s} className="px-2 py-1 bg-blue-500/10 text-blue-300 text-xs rounded border border-blue-500/20">{s}</span>
-                      )) : <span className="text-slate-500 text-xs italic">No frontend tech detected.</span>}
+                      )) : <span className="text-slate-400 text-xs italic">No frontend tech detected.</span>}
                     </div>
                   </div>
                   <div>
@@ -161,15 +161,15 @@ export default function GithubPage() {
                     <div className="flex flex-wrap gap-2">
                       {data.skills.backend?.length > 0 ? data.skills.backend.map(s => (
                         <span key={s} className="px-2 py-1 bg-pink-500/10 text-pink-300 text-xs rounded border border-pink-500/20">{s}</span>
-                      )) : <span className="text-slate-500 text-xs italic">No backend tech detected.</span>}
+                      )) : <span className="text-slate-400 text-xs italic">No backend tech detected.</span>}
                     </div>
                   </div>
                   <div>
-                    <p className="text-xs font-bold text-gold-400 uppercase tracking-wider mb-2">DevOps & Tools</p>
+                    <p className="text-xs font-bold text-primary-400 uppercase tracking-wider mb-2">DevOps & Tools</p>
                     <div className="flex flex-wrap gap-2">
                       {data.skills.tools?.length > 0 ? data.skills.tools.map(s => (
-                        <span key={s} className="px-2 py-1 bg-gold-500/10 text-gold-300 text-xs rounded border border-gold-500/20">{s}</span>
-                      )) : <span className="text-slate-500 text-xs italic">No standard DevOps tools detected.</span>}
+                        <span key={s} className="px-2 py-1 bg-primary-500/10 text-primary-300 text-xs rounded border border-primary-500/20">{s}</span>
+                      )) : <span className="text-slate-400 text-xs italic">No standard DevOps tools detected.</span>}
                     </div>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ export default function GithubPage() {
             )}
 
             {/* AI Insights & Weaknesses */}
-            <div className="glass-card p-6 md:col-span-2">
+            <div className="neon-glass-card p-6 md:col-span-2">
               <h3 className="section-title mb-5">Deep Intelligence Report</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 
@@ -202,17 +202,17 @@ export default function GithubPage() {
                         <span className="text-red-500 mt-1">•</span>{msg}
                       </li>
                     ))}
-                    {data.weaknesses?.length === 0 && <li className="text-slate-500 text-sm italic">No major structural weaknesses detected.</li>}
+                    {data.weaknesses?.length === 0 && <li className="text-slate-400 text-sm italic">No major structural weaknesses detected.</li>}
                   </ul>
                 </div>
 
                 {/* Recommendations */}
                 <div className="space-y-3">
-                  <p className="text-xs font-bold text-gold-400 flex items-center gap-2"><RiRoadMapLine/> STRATEGIC RECOMMENDATIONS</p>
+                  <p className="text-xs font-bold text-primary-400 flex items-center gap-2"><RiRoadMapLine/> STRATEGIC RECOMMENDATIONS</p>
                   <ul className="space-y-2">
                     {data.recommendations?.map((msg, i) => (
                       <li key={i} className="text-slate-300 text-sm flex items-start gap-2">
-                        <span className="text-gold-500 mt-1">•</span>{msg}
+                        <span className="text-primary-500 mt-1">•</span>{msg}
                       </li>
                     ))}
                   </ul>
@@ -222,21 +222,21 @@ export default function GithubPage() {
             </div>
 
             {/* Top Repos */}
-            <div className="glass-card p-6 md:col-span-2">
+            <div className="neon-glass-card p-6 md:col-span-2">
               <h3 className="section-title mb-4">Top Repositories</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {data.topRepos?.slice(0, 6).map(repo => (
                   <a key={repo.name} href={repo.url} target="_blank" rel="noopener noreferrer"
-                    className="block p-4 bg-obsidian-800/80 border border-white/5 rounded-xl hover:border-gold-500/30 transition-all duration-300 group hover:-translate-y-1">
+                    className="block p-4 bg-slate-900/60 border border-white/5 rounded-xl hover:border-primary-500/30 transition-all duration-300 group hover:-translate-y-1">
                     <div className="flex items-start justify-between gap-2">
-                      <p className="text-white text-sm font-semibold group-hover:text-gold-400 transition-colors truncate">{repo.name}</p>
-                      <div className="flex items-center gap-2 flex-shrink-0 text-xs text-slate-400">
+                      <p className="text-white text-sm font-semibold group-hover:text-primary-400 transition-colors truncate">{repo.name}</p>
+                      <div className="flex items-center gap-2 flex-shrink-0 text-xs text-slate-500">
                         <span className="flex items-center gap-1"><RiStarLine size={11} className="text-yellow-500"/>{repo.stars}</span>
                       </div>
                     </div>
-                    {repo.description && <p className="text-slate-400 text-xs mt-2 line-clamp-2 leading-relaxed">{repo.description}</p>}
+                    {repo.description && <p className="text-slate-500 text-xs mt-2 line-clamp-2 leading-relaxed">{repo.description}</p>}
                     {repo.language && (
-                      <span className="inline-flex items-center gap-1.5 mt-3 text-xs text-slate-500">
+                      <span className="inline-flex items-center gap-1.5 mt-3 text-xs text-slate-400">
                         <span className="w-2 h-2 rounded-full shadow-sm" style={{ background: langColors[repo.language] || '#94a3b8' }} />
                         {repo.language}
                       </span>

@@ -29,19 +29,19 @@ export default function CareerDecisionPage() {
   if (loading) return (
     <div className="p-6 min-h-screen flex items-center justify-center">
       <div className="text-center">
-        <div className="w-12 h-12 border-4 border-gold-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-slate-400">Loading your career decision...</p>
+        <div className="w-12 h-12 border-4 border-primary-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-slate-500">Loading your career decision...</p>
       </div>
     </div>
   );
 
   if (!decision) return (
     <div className="p-6 min-h-screen flex items-center justify-center">
-      <div className="text-center glass-card p-10 max-w-md">
+      <div className="text-center neon-glass-card p-10 max-w-md">
         <RiBrainLine className="text-6xl text-slate-600 mx-auto mb-4" />
         <h2 className="text-xl font-bold text-white mb-2">No Analysis Yet</h2>
-        <p className="text-slate-400 text-sm mb-6">Complete the Intent Engine to generate your brutally honest career decision</p>
-        <Link to="/career-intent" className="btn-gold">Start Intent Engine</Link>
+        <p className="text-slate-500 text-sm mb-6">Complete the Intent Engine to generate your brutally honest career decision</p>
+        <Link to="/career-intent" className="btn-primary">Start Intent Engine</Link>
       </div>
     </div>
   );
@@ -51,12 +51,12 @@ export default function CareerDecisionPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-gradient-to-br from-gold-500 to-orange-500 rounded-xl flex items-center justify-center shadow-lg shadow-gold-500/20">
-            <RiSparklingLine className="text-xl text-obsidian-900" />
+          <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/20">
+            <RiSparklingLine className="text-xl text-white" />
           </div>
           <div>
             <h1 className="text-2xl font-black text-white">Career Decision</h1>
-            <p className="text-slate-400 text-sm">AI-powered reality-based career analysis</p>
+            <p className="text-slate-500 text-sm">AI-powered reality-based career analysis</p>
           </div>
         </div>
         <button onClick={reAnalyze} disabled={analyzing} className="btn-ghost flex items-center gap-2 text-sm">
@@ -65,22 +65,22 @@ export default function CareerDecisionPage() {
       </div>
 
       {/* Hero Decision Banner */}
-      <div className="glass-card p-6 mb-6 bg-gradient-to-r from-gold-500/10 to-orange-500/10 border border-gold-500/20 animated-border">
+      <div className="neon-glass-card p-6 mb-6 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 border border-primary-500/20 animated-border">
         <div className="flex flex-col sm:flex-row items-center gap-6">
           <ScoreRing score={decision.confidencePercent} size={110} />
           <div className="flex-1 text-center sm:text-left">
-            <p className="text-xs text-gold-400 font-bold uppercase tracking-wider mb-1">AI Recommendation</p>
+            <p className="text-xs text-primary-400 font-bold uppercase tracking-wider mb-1">AI Recommendation</p>
             <h2 className="text-3xl font-black text-white mb-2">{decision.bestPath}</h2>
             <p className="text-slate-300 text-sm leading-relaxed">{decision.reasoning}</p>
             <div className="flex flex-wrap gap-3 mt-4">
               <div className="flex items-center gap-2 text-sm">
-                <RiTimeLine className="text-gold-400" />
+                <RiTimeLine className="text-primary-400" />
                 <span className="text-slate-300">Time: <strong className="text-white">{decision.timeRequired}</strong></span>
               </div>
               <div className={`${decision.failureRisk === 'low' ? 'badge-risk-low' : decision.failureRisk === 'medium' ? 'badge-risk-medium' : 'badge-risk-high'}`}>
                 <RiShieldCheckLine size={10} /> {decision.failureRisk?.toUpperCase()} RISK
               </div>
-              <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${decision.jobEligible ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-500/20 text-slate-400 border border-slate-500/30'}`}>
+              <div className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold ${decision.jobEligible ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30' : 'bg-slate-900/600/20 text-slate-500 border border-slate-500/30'}`}>
                 {decision.jobEligible ? '✓ JOB READY' : '✗ NOT YET READY'}
               </div>
             </div>
@@ -118,13 +118,13 @@ export default function CareerDecisionPage() {
 
           if (decision.confidencePercent < 75) {
             return (
-              <div className={`glass-card p-6 mb-8 border-2 ${borderStyle} relative overflow-hidden bg-obsidian-900`}>
+              <div className={`neon-glass-card p-6 mb-8 border-2 ${borderStyle} relative overflow-hidden bg-slate-900/60`}>
                 <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-red-600 to-amber-500" />
                 
                 <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
                   {/* Left: Metric */}
                   <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-full bg-obsidian-950 flex items-center justify-center text-3xl border border-white/5">
+                    <div className="w-16 h-16 rounded-full bg-slate-950 flex items-center justify-center text-3xl border border-white/5">
                       {icon}
                     </div>
                     <div>
@@ -138,12 +138,12 @@ export default function CareerDecisionPage() {
                   </div>
 
                   {/* Right: Simulation */}
-                  <div className="bg-obsidian-950 p-4 rounded-xl border border-white/5 md:min-w-[280px]">
-                    <p className="text-xs text-slate-500 uppercase font-bold tracking-wider mb-2">What-If Simulation</p>
+                  <div className="bg-slate-950 p-4 rounded-xl border border-white/5 md:min-w-[280px]">
+                    <p className="text-xs text-slate-400 uppercase font-bold tracking-wider mb-2">What-If Simulation</p>
                     <p className="text-sm text-slate-300">If you master <strong className="text-white">{topSkillToFix}</strong>:</p>
                     <div className="flex items-center gap-2 mt-2">
                       <span className="text-red-400 font-black line-through opacity-70">Risk {riskScore}%</span>
-                      <span className="text-slate-500">→</span>
+                      <span className="text-slate-400">→</span>
                       <span className="text-emerald-400 font-black">Drops to {improvedRisk}%</span>
                     </div>
                   </div>
@@ -153,11 +153,11 @@ export default function CareerDecisionPage() {
 
                 <div className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between">
                   <div className="flex-1">
-                    <p className="text-sm text-slate-400 leading-relaxed mb-3">
+                    <p className="text-sm text-slate-500 leading-relaxed mb-3">
                       <span className="font-bold text-red-400">⚠ Warning:</span> You have a historically high chance of failing technical interviews if your core competencies are not fundamentally improved immediately.
                     </p>
                     <div className="flex items-center gap-2 flex-wrap">
-                      <span className="text-xs uppercase font-bold text-slate-500">Top Weak Areas:</span>
+                      <span className="text-xs uppercase font-bold text-slate-400">Top Weak Areas:</span>
                       {decision.skillGaps?.slice(0,3).map((g, i) => (
                         <span key={i} className="text-xs bg-red-500/10 text-red-300 border border-red-500/20 px-2 py-1 rounded">
                           {g.skill}
@@ -181,7 +181,7 @@ export default function CareerDecisionPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
         {/* Step 1: Job Eligibility */}
-        <div className="glass-card p-6 flex flex-col relative overflow-hidden group border-emerald-500/10 hover:border-emerald-500/30 transition-colors">
+        <div className="neon-glass-card p-6 flex flex-col relative overflow-hidden group border-emerald-500/10 hover:border-emerald-500/30 transition-colors">
           <div className="absolute top-0 left-0 w-full h-1 bg-emerald-500/50" />
           <div className="flex items-center gap-2 mb-4 w-full justify-between">
             <div className="flex items-center gap-2">
@@ -209,7 +209,7 @@ export default function CareerDecisionPage() {
         </div>
 
         {/* Step 2: Interview Readiness */}
-        <div className="glass-card p-6 flex flex-col relative overflow-hidden group border-amber-500/10 hover:border-amber-500/30 transition-colors">
+        <div className="neon-glass-card p-6 flex flex-col relative overflow-hidden group border-amber-500/10 hover:border-amber-500/30 transition-colors">
           <div className="absolute top-0 left-0 w-full h-1 bg-amber-500/50" />
           {(() => {
             const missingSkillsCount = decision.skillGaps?.length || 2;
@@ -246,9 +246,9 @@ export default function CareerDecisionPage() {
                 </div>
 
                 <div className="mt-5 w-full">
-                  <p className="text-[10px] text-slate-500 uppercase tracking-wider font-bold mb-2">Readiness Factors</p>
+                  <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-2">Readiness Factors</p>
                   {decision.failureReasons?.length > 0 ? (
-                    <div className="text-xs text-slate-400 p-3 bg-obsidian-950 rounded-lg border border-white/5 line-clamp-2">
+                    <div className="text-xs text-slate-500 p-3 bg-slate-950 rounded-lg border border-white/5 line-clamp-2">
                       <span className="text-red-400 mr-2 font-bold">✗</span>{decision.failureReasons[0]}
                     </div>
                   ) : (
@@ -263,7 +263,7 @@ export default function CareerDecisionPage() {
         </div>
 
         {/* Regret Prediction */}
-        <div className="glass-card p-6">
+        <div className="neon-glass-card p-6">
           <div className="flex items-center gap-2 mb-4">
             <RiEmotionSadLine className="text-xl text-purple-400" />
             <h3 className="section-title">Regret Prediction</h3>
@@ -273,7 +273,7 @@ export default function CareerDecisionPage() {
               <p className="text-xs text-red-400 font-bold uppercase tracking-wider mb-2">❌ Wrong Path Consequences</p>
               <div className="space-y-2">
                 {decision.wrongPathConsequences?.map((c, i) => (
-                  <div key={i} className="flex items-start gap-2 text-sm text-slate-400 p-2 bg-red-500/5 rounded-lg">
+                  <div key={i} className="flex items-start gap-2 text-sm text-slate-500 p-2 bg-red-500/5 rounded-lg">
                     <span className="text-red-400 flex-shrink-0">✗</span>
                     {c}
                   </div>
@@ -284,7 +284,7 @@ export default function CareerDecisionPage() {
               <p className="text-xs text-emerald-400 font-bold uppercase tracking-wider mb-2">✅ Right Path Outcomes</p>
               <div className="space-y-2">
                 {decision.rightPathOutcomes?.map((o, i) => (
-                  <div key={i} className="flex items-start gap-2 text-sm text-slate-400 p-2 bg-emerald-500/5 rounded-lg">
+                  <div key={i} className="flex items-start gap-2 text-sm text-slate-500 p-2 bg-emerald-500/5 rounded-lg">
                     <span className="text-emerald-400 flex-shrink-0">✓</span>
                     {o}
                   </div>
@@ -295,17 +295,17 @@ export default function CareerDecisionPage() {
         </div>
 
         {/* Skill Gaps */}
-        <div className="glass-card p-6">
+        <div className="neon-glass-card p-6">
           <div className="flex items-center gap-2 mb-4">
             <RiCheckDoubleLine className="text-xl text-blue-400" />
             <h3 className="section-title">Skill Gap Analysis</h3>
           </div>
           <div className="space-y-3">
             {decision.skillGaps?.length > 0 ? decision.skillGaps.map((gap, i) => (
-              <div key={i} className="flex items-center justify-between p-3 bg-obsidian-700/50 rounded-xl">
+              <div key={i} className="flex items-center justify-between p-3 bg-slate-900/40/5 rounded-xl">
                 <div>
                   <p className="text-white text-sm font-semibold capitalize">{gap.skill}</p>
-                  <p className="text-slate-400 text-xs">{gap.estimatedTime} to learn</p>
+                  <p className="text-slate-500 text-xs">{gap.estimatedTime} to learn</p>
                 </div>
                 <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
                   gap.priority === 'high' ? 'bg-red-500/20 text-red-400' :
@@ -319,7 +319,7 @@ export default function CareerDecisionPage() {
             <div className="mt-4 p-3 bg-red-500/5 border border-red-500/10 rounded-xl">
               <p className="text-xs text-red-400 font-bold uppercase tracking-wider mb-2">❌ Paths to Avoid</p>
               {decision.avoidPaths.map((p, i) => (
-                <p key={i} className="text-slate-400 text-sm">• {p}</p>
+                <p key={i} className="text-slate-500 text-sm">• {p}</p>
               ))}
             </div>
           )}
@@ -327,10 +327,10 @@ export default function CareerDecisionPage() {
       </div>
 
       {/* CTA */}
-      <div className="glass-card p-6 text-center bg-gradient-to-r from-obsidian-800 to-obsidian-700">
+      <div className="neon-glass-card p-6 text-center bg-gradient-to-r from-slate-800 to-slate-700">
         <h3 className="text-white font-bold text-lg mb-2">Ready to take action?</h3>
-        <p className="text-slate-400 text-sm mb-4">Generate your personalized roadmap with step-by-step tasks and learning videos</p>
-        <Link to="/roadmap" className="btn-gold inline-flex items-center gap-2">
+        <p className="text-slate-500 text-sm mb-4">Generate your personalized roadmap with step-by-step tasks and learning videos</p>
+        <Link to="/roadmap" className="btn-primary inline-flex items-center gap-2">
           Generate My Roadmap <RiArrowRightLine />
         </Link>
       </div>
