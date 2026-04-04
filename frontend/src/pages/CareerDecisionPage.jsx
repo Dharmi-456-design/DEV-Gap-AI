@@ -215,7 +215,11 @@ export default function CareerDecisionPage() {
             const missingSkillsCount = decision.skillGaps?.length || 2;
             const weakTopicsCount = decision.missingForJob?.length || 2;
             const baseRisk = (missingSkillsCount * 10) + (weakTopicsCount * 5) + (100 - (decision.confidencePercent || 0));
-            const readiness = Math.max(0, Math.min(100, 100 - baseRisk));
+            const rawReadiness = Math.max(0, Math.min(100, 100 - baseRisk));
+            // If the user is job eligible, interview readiness equals their eligibility score
+            const readiness = decision.jobEligible
+              ? (decision.eligibilityScore || 0)
+              : rawReadiness;
             
             const stateColor = readiness < 40 ? 'red' : readiness < 75 ? 'amber' : 'emerald';
             

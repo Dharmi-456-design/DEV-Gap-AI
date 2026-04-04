@@ -15,7 +15,7 @@ const navItems = [
   { path: '/career-decision', icon: RiSparklingLine, label: 'Career Decision' },
   { path: '/github', icon: RiGithubLine, label: 'GitHub Analyzer' },
   { path: '/resume', icon: RiFileTextLine, label: 'Resume Upload' },
-  { path: '/roadmap', icon: RiRoadMapLine, label: 'Roadmap' },
+  { path: '/roadmap', icon: RiRoadMapLine, label: 'Elite Roadmap', highlight: true },
   { path: '/trends', icon: RiLineChartLine, label: 'Job Trends' },
   { path: '/profile', icon: RiUserLine, label: 'Profile' },
 ];

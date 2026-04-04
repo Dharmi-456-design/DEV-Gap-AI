@@ -6,7 +6,7 @@ import DashboardPage from './pages/DashboardPage.jsx';
 import CareerIntentPage from './pages/CareerIntentPage.jsx';
 import GithubPage from './pages/GithubPage.jsx';
 import ResumePage from './pages/ResumePage.jsx';
-import RoadmapPage from './pages/RoadmapPage.jsx';
+import AdaptiveRoadmapPage from './pages/AdaptiveRoadmapPage.jsx';
 import CareerDecisionPage from './pages/CareerDecisionPage.jsx';
 import TrendsPage from './pages/TrendsPage.jsx';
 import ProfilePage from './pages/ProfilePage.jsx';
@@ -55,7 +55,7 @@ function App() {
           <Route path="career-intent" element={<CareerIntentPage />} />
           <Route path="github" element={<GithubPage />} />
           <Route path="resume" element={<ResumePage />} />
-          <Route path="roadmap" element={<RoadmapPage />} />
+          <Route path="roadmap" element={<AdaptiveRoadmapPage />} />
           <Route path="career-decision" element={<CareerDecisionPage />} />
           <Route path="trends" element={<TrendsPage />} />
           <Route path="profile" element={<ProfilePage />} />
