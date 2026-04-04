@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { useNavigate } from 'react-router-dom';
 import { RiBrainLine, RiArrowRightLine, RiArrowLeftLine, RiCheckLine, RiSparklingLine } from 'react-icons/ri';
 
@@ -75,8 +75,8 @@ export default function CareerIntentPage() {
     if (!isLast) { setStep(s => s + 1); return; }
     setLoading(true); setError('');
     try {
-      await axios.post('/api/career/inputs', answers);
-      const { data } = await axios.post('/api/career/analyze');
+      await api.post('/api/career/inputs', answers);
+      const { data } = await api.post('/api/career/analyze');
       navigate('/career-decision');
     } catch (err) {
       setError(err.response?.data?.message || 'Analysis failed');

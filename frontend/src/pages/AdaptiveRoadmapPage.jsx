@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { 
   RiRoadMapLine, RiLockUnlockLine, RiArrowDownSLine, RiArrowUpSLine,
   RiCheckDoubleLine, RiAlertFill, RiTerminalWindowLine, RiYoutubeLine,
@@ -21,7 +21,7 @@ export default function AdaptiveRoadmapPage() {
   const handleGenerate = async () => {
     setLoading(true);
     try {
-      const response = await axios.post('/api/adaptive-roadmap/generate', {});
+      const response = await api.post('/api/adaptive-roadmap/generate', {});
       setData(response.data);
       if (response.data.phases && response.data.phases.length > 0) {
           setExpandedPhases({ 0: true }); // auto-expand first

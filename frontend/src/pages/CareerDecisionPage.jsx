@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { Link } from 'react-router-dom';
 import {
   RiSparklingLine, RiShieldCheckLine, RiArrowRightLine, RiBrainLine,
@@ -14,14 +14,14 @@ export default function CareerDecisionPage() {
 
   const fetchDecision = () => {
     setLoading(true);
-    axios.get('/api/career/decision').then(r => setDecision(r.data)).catch(() => {}).finally(() => setLoading(false));
+    api.get('/api/career/decision').then(r => setDecision(r.data)).catch(() => {}).finally(() => setLoading(false));
   };
 
   useEffect(() => { fetchDecision(); }, []);
 
   const reAnalyze = async () => {
     setAnalyzing(true);
-    try { const { data } = await axios.post('/api/career/analyze'); setDecision(data); }
+    try { const { data } = await api.post('/api/career/analyze'); setDecision(data); }
     catch (err) { console.error(err); }
     finally { setAnalyzing(false); }
   };

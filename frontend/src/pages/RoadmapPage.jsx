@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { Link } from 'react-router-dom';
 import { RiRoadMapLine, RiPlayCircleLine, RiCheckLine, RiCodeLine, RiMessage2Line, RiBriefcaseLine, RiGlobalLine, RiPsychotherapyLine, RiTerminalBoxLine, RiArrowRightSLine, RiStarLine, RiFlashlightLine, RiArrowRightLine } from 'react-icons/ri';
 import { SiHackerrank, SiLeetcode } from 'react-icons/si';
@@ -22,7 +22,7 @@ export default function RoadmapPage() {
   };
 
   useEffect(() => {
-    axios.get('/api/roadmap').then(r => { 
+    api.get('/api/roadmap').then(r => { 
       if (r.data) {
         setRoadmap(r.data); 
         if (r.data.phases && r.data.phases.length > 0 && !r.data.phases[0].interviewQuestions) {
@@ -35,7 +35,7 @@ export default function RoadmapPage() {
   const handleGenerate = async () => {
     setGenerating(true);
     try {
-      const { data } = await axios.post('/api/roadmap/generate');
+      const { data } = await api.post('/api/roadmap/generate');
       setRoadmap(data);
     } catch (err) { console.error(err); }
     finally { setGenerating(false); }
@@ -43,7 +43,7 @@ export default function RoadmapPage() {
 
   const toggleTask = async (phaseIndex, taskIndex, current) => {
     try {
-      const { data } = await axios.patch('/api/roadmap/task', { phaseIndex, taskIndex, completed: !current });
+      const { data } = await api.patch('/api/roadmap/task', { phaseIndex, taskIndex, completed: !current });
       setRoadmap(data);
     } catch (err) { console.error(err); }
   };

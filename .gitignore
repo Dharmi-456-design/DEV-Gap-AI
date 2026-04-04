@@ -22,6 +22,8 @@ frontend/dist
 .env.local
 .env.*.local
 backend/.env
+frontend/.env.production
+frontend/.env*.local
 
 # Uploaded files
 backend/uploads/*

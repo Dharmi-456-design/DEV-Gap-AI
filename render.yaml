@@ -1,20 +1,21 @@
 services:
   - type: web
-    name: devgap-ai
+    name: devgap-ai-backend
     runtime: node
     plan: free
-    buildCommand: npm run build
-    startCommand: npm run start
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
-      - key: MONGO_URI
-        sync: false
-      - key: JWT_SECRET
-        generateValue: true
       - key: NODE_ENV
         value: production
       - key: PORT
         value: 10000
-      - key: YOUTUBE_API_KEY
+      - key: MONGO_URI
         sync: false
+      - key: JWT_SECRET
+        generateValue: true
       - key: GITHUB_TOKEN
         sync: false
+      - key: FRONTEND_URL
+        value: https://charusat-project.netlify.app

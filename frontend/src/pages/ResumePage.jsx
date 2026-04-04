@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { useDropzone } from 'react-dropzone';
 import { Link } from 'react-router-dom';
 import { 
@@ -20,7 +20,7 @@ export default function ResumePage() {
   const [showGuide, setShowGuide] = useState(false);
 
   useEffect(() => {
-    axios.get('/api/resume').then(r => setResume(r.data)).catch(() => {}).finally(() => setFetching(false));
+    api.get('/api/resume').then(r => setResume(r.data)).catch(() => {}).finally(() => setFetching(false));
   }, []);
 
   const onDrop = useCallback(async (acceptedFiles) => {
@@ -30,7 +30,7 @@ export default function ResumePage() {
     const formData = new FormData();
     formData.append('resume', file);
     try {
-      const { data } = await axios.post('/api/resume/upload', formData, {
+      const { data } = await api.post('/api/resume/upload', formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       setResume(data); setSuccess(true);

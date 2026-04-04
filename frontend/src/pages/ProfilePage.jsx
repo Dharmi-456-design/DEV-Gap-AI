@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import { Link } from 'react-router-dom';
 import {
@@ -138,10 +138,10 @@ export default function ProfilePage() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/profile').catch(() => ({ data: null })),
-      axios.get('/api/resume').catch(() => ({ data: null })),
-      axios.get('/api/github').catch(() => ({ data: null })),
-      axios.get('/api/career/decision').catch(() => ({ data: null })),
+      api.get('/api/profile').catch(() => ({ data: null })),
+      api.get('/api/resume').catch(() => ({ data: null })),
+      api.get('/api/github').catch(() => ({ data: null })),
+      api.get('/api/career/decision').catch(() => ({ data: null })),
     ]).then(([p, r, g, d]) => {
       if (p.data) {
         const { bio, location, githubUsername, linkedinUrl, portfolioUrl, targetRole, experience, education } = p.data;
@@ -156,7 +156,7 @@ export default function ProfilePage() {
     e.preventDefault();
     setSaving(true);
     try {
-      await axios.put('/api/profile', form);
+      await api.put('/api/profile', form);
       setSaved(true); setTimeout(() => setSaved(false), 3000);
     } catch (err) { console.error(err); }
     finally { setSaving(false); }

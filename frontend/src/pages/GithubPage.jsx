@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { RiGithubLine, RiSearchLine, RiStarLine, RiGitForkLine, RiCodeLine, RiCheckLine, RiGlobalLine, RiPsychotherapyLine, RiRoadMapLine } from 'react-icons/ri';
 
 export default function GithubPage() {
@@ -9,7 +9,7 @@ export default function GithubPage() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    axios.get('/api/github').then(r => { if (r.data) setData(r.data); }).catch(() => {});
+    api.get('/api/github').then(r => { if (r.data) setData(r.data); }).catch(() => {});
   }, []);
 
   const handleAnalyze = async (e) => {
@@ -17,7 +17,7 @@ export default function GithubPage() {
     if (!username.trim()) return;
     setLoading(true); setError('');
     try {
-      const { data: result } = await axios.post('/api/github/analyze', { username });
+      const { data: result } = await api.post('/api/github/analyze', { username });
       setData(result);
     } catch (err) {
       setError(err.response?.data?.message || 'GitHub analysis failed. Check the username.');

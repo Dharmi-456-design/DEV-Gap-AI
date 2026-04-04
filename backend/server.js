@@ -18,7 +18,7 @@ const __dirname = path.dirname(__filename);
 
 // Load .env only in development
 if (process.env.NODE_ENV !== 'production') {
-  dotenv.config({ path: path.resolve(__dirname, '../.env') });
+  dotenv.config({ path: path.resolve(__dirname, '.env') });
 }
 
 connectDB();
@@ -27,9 +27,9 @@ const app = express();
 
 // Production-ready CORS
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' 
-    ? false // Disable CORS for own-origin frontend in unified build
-    : 'http://localhost:3000', 
+  origin: process.env.NODE_ENV === 'production'
+    ? process.env.FRONTEND_URL || 'https://charusat-project.netlify.app'
+    : 'http://localhost:3000',
   credentials: true
 };
 app.use(cors(corsOptions));
@@ -50,16 +50,8 @@ app.use('/api/analytics', analyticsRoutes);
 
 app.get('/api/health', (req, res) => res.json({ status: 'DevGap AI Server Running 🚀', time: new Date() }));
 
-// --- PRODUCTION SERVING ---
-if (process.env.NODE_ENV === 'production') {
-  const frontendDistPath = path.join(__dirname, '../frontend/dist');
-  app.use(express.static(frontendDistPath));
-  
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(frontendDistPath, 'index.html'));
-  });
-}
-// --------------------------
+// Frontend is deployed separately on Netlify
+// No static file serving needed in production
 
 // Error Handling Middleware
 app.use((err, req, res, next) => {

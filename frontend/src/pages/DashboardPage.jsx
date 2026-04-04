@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { useAuth } from '../context/AuthContext.jsx';
 import {
   RiSparklingLine, RiGithubLine, RiFileTextLine, RiBrainLine,
@@ -118,10 +118,10 @@ export default function DashboardPage() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/profile').catch(() => ({ data: null })),
-      axios.get('/api/github').catch(() => ({ data: null })),
-      axios.get('/api/resume').catch(() => ({ data: null })),
-      axios.get('/api/career/decision').catch(() => ({ data: null })),
+      api.get('/api/profile').catch(() => ({ data: null })),
+      api.get('/api/github').catch(() => ({ data: null })),
+      api.get('/api/resume').catch(() => ({ data: null })),
+      api.get('/api/career/decision').catch(() => ({ data: null })),
     ]).then(([p, g, r, d]) => {
       setProfile(p.data); setGithub(g.data); setResume(r.data); setDecision(d.data);
     }).finally(() => setLoading(false));

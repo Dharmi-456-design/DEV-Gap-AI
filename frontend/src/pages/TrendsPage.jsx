@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../api/axios.js';
 import { Link, useNavigate } from 'react-router-dom';
 import { 
   RiLineChartLine, RiArrowUpLine, RiArrowDownLine,
@@ -100,8 +100,8 @@ export default function TrendsPage() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('/api/career/trends').catch(() => ({ data: null })),
-      axios.get('/api/resume').catch(() => ({ data: null }))
+      api.get('/api/career/trends').catch(() => ({ data: null })),
+      api.get('/api/resume').catch(() => ({ data: null }))
     ]).then(([t, r]) => {
       setTrends(t.data);
       setMissingSkills(r.data?.missingSkills || ["React", "System Design", "AWS", "Docker"]);
