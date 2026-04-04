@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: devgap-ai
+    runtime: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm run start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: YOUTUBE_API_KEY
+        sync: false
+      - key: GITHUB_TOKEN
+        sync: false
