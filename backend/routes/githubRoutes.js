@@ -10,7 +10,11 @@ const fetchGitHub = async (url, token) => {
     headers.Authorization = `token ${token}`;
   }
   const res = await fetch(url, { headers });
-  if (!res.ok) throw new Error(`GitHub API error: ${res.status}`);
+  if (!res.ok) {
+    if (res.status === 403) throw new Error('GitHub API Rate Limit exceeded or Forbidden access.');
+    if (res.status === 404) throw new Error('GitHub User not found.');
+    throw new Error(`GitHub API error: ${res.status}`);
+  }
   return res.json();
 };
 

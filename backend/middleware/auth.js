@@ -14,7 +14,8 @@ const protect = asyncHandler(async (req, res, next) => {
       token = req.headers.authorization.split(' ')[1];
 
       // Decode and verify token
-      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const secret = process.env.JWT_SECRET || 'devgap_ai_ultra_secret_key_2024';
+      const decoded = jwt.verify(token, secret);
 
       // Get user from the token, exclude password
       req.user = await User.findById(decoded.id).select('-password');

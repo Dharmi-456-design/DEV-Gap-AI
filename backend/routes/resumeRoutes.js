@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { fileURLToPath } from 'url';
 import Resume from '../models/Resume.js';
 import protect from '../middleware/auth.js';
 
@@ -9,12 +10,14 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    const dir = 'uploads/resumes';
+    const __dirname = path.dirname(fileURLToPath(import.meta.url));
+    const dir = path.join(__dirname, '../uploads/resumes');
     if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
     cb(null, dir);
   },
   filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
+
 const upload = multer({ storage, fileFilter: (req, file, cb) => {
   if (file.mimetype === 'application/pdf') cb(null, true);
   else cb(new Error('Only PDF files allowed'), false);
@@ -28,10 +31,17 @@ const TOOLS_MAP = ['git','docker','kubernetes','aws','azure'];
 const extractAdvancedAnalytics = (text, originalName) => {
   const lowerText = text.toLowerCase() + " " + originalName.toLowerCase();
   
-  const frontend = FRONTEND_MAP.filter(s => lowerText.includes(s)) || ['React', 'JavaScript', 'HTML', 'CSS'];
-  const backend = BACKEND_MAP.filter(s => lowerText.includes(s)) || ['Node.js'];
-  const database = DB_MAP.filter(s => lowerText.includes(s)) || ['MongoDB'];
-  const tools = TOOLS_MAP.filter(s => lowerText.includes(s)) || ['Git'];
+  let frontend = FRONTEND_MAP.filter(s => lowerText.includes(s));
+  if (frontend.length === 0) frontend = ['React', 'JavaScript', 'HTML', 'CSS'];
+  
+  let backend = BACKEND_MAP.filter(s => lowerText.includes(s));
+  if (backend.length === 0) backend = ['Node.js'];
+  
+  let database = DB_MAP.filter(s => lowerText.includes(s));
+  if (database.length === 0) database = ['MongoDB'];
+  
+  let tools = TOOLS_MAP.filter(s => lowerText.includes(s));
+  if (tools.length === 0) tools = ['Git'];
 
   const allSkills = [...frontend, ...backend, ...database, ...tools];
 
